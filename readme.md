@@ -71,6 +71,3 @@ synchronisation and 2FA for ultimate security and privacy!
 - System authentication unlock
   > i.e. user/phone password or biometrics
 
-# Resources
-[How to Build a Cross-Platform Application with Next.js and Tauri](https://www.freecodecamp.org/news/build-a-cross-platform-app-with-next-and-tauri/)
-
