@@ -12,12 +12,14 @@ public class TasksController : ControllerBase
         new TaskModel 
         {
             Title = "Task #1",
+            Description = "The first task",
             Done = true,
             Subtasks = new SubtaskModel[] {},
         },
         new TaskModel 
         {
-            Title = "Task #1",
+            Title = "Task #2",
+            Description = "The second task",
             Done = false,
             Subtasks = new SubtaskModel[] 
             {
