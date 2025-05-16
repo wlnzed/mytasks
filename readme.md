@@ -24,7 +24,7 @@ synchronisation and 2FA for ultimate security and privacy!
 - **Backend**: [C# (.NET WebAPI)](https://dotnet.microsoft.com/en-us/apps/aspnet/apis)
 - **Database**: [Amazon DynamoDB](https://aws.amazon.com/dynamodb/)
 - **Authentication & 2FA**: [Amazon Cognito](https://aws.amazon.com/cognito/)
-- **Containeris & Orchestration**:
+- **Containers & Orchestration**:
   - *Local*: [Docker](https://www.docker.com/) & [Kubernetes](https://kubernetes.io/)
   - *Cloud*: [EC2](https://aws.amazon.com/ec2/) & [EKS](https://aws.amazon.com/eks/)
 
@@ -70,4 +70,3 @@ synchronisation and 2FA for ultimate security and privacy!
 ### Additional Off-Web Features
 - System authentication unlock
   > i.e. user/phone password or biometrics
-
