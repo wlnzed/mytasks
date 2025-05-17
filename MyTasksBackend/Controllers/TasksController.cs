@@ -7,21 +7,21 @@ namespace MyTasksBackend.Controllers;
 [Route("[controller]")]
 public class TasksController : ControllerBase
 {
-    private static readonly TaskModel[] Tasks = new[]
+    private static readonly IEnumerable<TaskModel> Tasks = new TaskModel[]
     {
-        new TaskModel 
+        new()
         {
             Title = "Task #1",
             Description = "The first task",
             Done = true,
-            Subtasks = new SubtaskModel[] {},
+            Subtasks = Array.Empty<SubtaskModel>(),
         },
-        new TaskModel 
+        new()
         {
             Title = "Task #2",
             Description = "The second task",
             Done = false,
-            Subtasks = new SubtaskModel[] 
+            Subtasks = new SubtaskModel[]
             {
                 new SubtaskModel {
                     Title = "Subtask #1",
