@@ -1,45 +1,39 @@
-import Image from "next/image";
+import { FC } from "react";
 import styles from "./page.module.css";
+import Task from "../components/task";
 
-// TODO: replace checkboxes with SVGs for done/undone
+const placeholderTasks = [
+  {
+    title: "Task #1",
+    description: "The first task",
+    isDone: true,
+    subtasks: [],
+  },
+  {
+    title: "Task #2",
+    description: "the second task",
+    isDone: false,
+    subtasks: [                                                                  
+      { title: "Subtask #1", isDone: true },
+      { title: "Subtask #2", isDone: false }
+    ],
+  },
+];
 
-export default function Home() {
-  return (
-    <div className={styles.page}>
-      <ul className={styles.tasks}>
-        <li className={styles.task}>
-          <h1 className={styles.taskTitle}>
-            Task #1
-          </h1>
-          <p className={styles.taskDescription}>
-            The first task
-          </p>
-          <input type="checkbox" />
-        </li>
-        <li className={styles.task}>
-          <h1 className={styles.taskTitle}>
-            Task #2
-          </h1>
-          <p className={styles.taskDescription}>
-            The second task
-          </p>
-          <input type="checkbox" />
-          <ul className={styles.subtasks}>
-            <li className={styles.subtask}>
-              <h2 className={styles.subtaskTitle}>
-                Subtask #1
-              </h2>
-              <input type="checkbox"/>
-            </li>
-            <li className={styles.subtask}>
-              <h2 className={styles.subtaskTitle}>
-                Subtask #2
-              </h2>
-              <input type="checkbox"/>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-  );
-}
+const Home : FC = () => (
+  <div className={styles.page}>
+    <ul className={styles.tasks}>
+      {placeholderTasks.map((task, i) => (
+        <Task 
+          key={i}
+          title={task.title} 
+          description={task.description} 
+          isDone={task.isDone} 
+          subtasks={task.subtasks} 
+        />
+      ))}
+    </ul>
+  </div>
+);
+
+export default Home;

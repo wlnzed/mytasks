@@ -5,43 +5,38 @@ namespace MyTasksBackend.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class TasksController : ControllerBase
+public class TasksController(ILogger<TasksController> _logger) : ControllerBase
 {
-    private static readonly IEnumerable<TaskModel> Tasks = new TaskModel[]
-    {
+    private static readonly IEnumerable<TaskModel> Tasks = [
         new()
         {
             Title = "Task #1",
             Description = "The first task",
             Done = true,
-            Subtasks = Array.Empty<SubtaskModel>(),
+            Subtasks = [],
         },
         new()
         {
             Title = "Task #2",
             Description = "The second task",
             Done = false,
-            Subtasks = new SubtaskModel[]
-            {
-                new SubtaskModel {
+            Subtasks = [
+                new() {
                     Title = "Subtask #1",
                     Done = false,
                 },
-                new SubtaskModel {
+                new() {
                     Title = "Subtask #2",
                     Done = true,
                 }
-            }
+            ]
         }
-    };
-
-    private readonly ILogger<TasksController> _logger;
-
-    public TasksController(ILogger<TasksController> logger)
-    {
-        _logger = logger;
-    }
+    ];
 
     [HttpGet(Name = "GetTasks")]
-    public IEnumerable<TaskModel> Get() => Tasks;
+    public IEnumerable<TaskModel> Get() 
+    {
+        _logger.Log(LogLevel.Information, new EventId(), "returning tasks...");
+        return Tasks;
+    }
 }
