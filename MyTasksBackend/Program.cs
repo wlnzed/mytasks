@@ -6,9 +6,11 @@ builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
+var localCorsPolicyName = "localdev";
+
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("localdev", policy =>
+    options.AddPolicy(localCorsPolicyName, policy =>
     {
         policy.WithOrigins("http://localhost:5173");
     });
@@ -20,7 +22,7 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
-    app.UseCors("localdev");
+    app.UseCors(localCorsPolicyName);
 }
 
 app.UseHttpsRedirection();
