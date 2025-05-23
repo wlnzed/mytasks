@@ -16,7 +16,6 @@ function App() {
   const [tasks, setTasks] = useState<TaskData[]>([]);
 
   useEffect(() => {
-    console.log("backend url: " + import.meta.env.VITE_BACKEND_URL);
     fetch(import.meta.env.VITE_BACKEND_URL + "/tasks")
       .then((resp) => {
         resp
