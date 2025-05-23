@@ -1,12 +1,32 @@
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+
 namespace MyTasksBackend.Models;
 
 public class TaskModel
 {
-    public required string Title { get; set; }
-    
-    public required string Description { get; set; }
+    [BsonId]
+    [BsonRepresentation(BsonType.ObjectId)]
+    public string? Id { get; set; }
 
-    public required bool IsDone { get; set; }
+    [BsonElement("title")]
+    public string? Title { get; set; }
 
-    public required SubtaskModel[] Subtasks { get; set; }
+    [BsonElement("description")]
+    public string? Description { get; set; }
+
+    [BsonElement("isDone")]
+    public bool? IsDone { get; set; }
+
+    [BsonElement("subtasks")]
+    public IEnumerable<Subtask>? Subtasks { get; set; }
+}
+
+public class Subtask
+{
+    [BsonElement("title")]
+    public string? Title { get; set; }
+
+    [BsonElement("isDone")]
+    public bool? IsDone { get; set; }
 }

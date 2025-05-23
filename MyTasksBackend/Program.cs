@@ -1,24 +1,26 @@
+using MyTasksBackend.Config;
+using MyTasksBackend.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
 var localCorsPolicyName = "localdev";
 
 builder.Services.AddCors(options =>
-{
     options.AddPolicy(localCorsPolicyName, policy =>
-    {
-        policy.WithOrigins("http://localhost:5173");
-    });
-});
+        policy.WithOrigins(builder.Configuration.GetValue<string>("FrontendUrl")!)
+    )
+);
+
+builder.Services.Configure<DatabaseConfig>(
+    builder.Configuration.GetSection("Database"));
+
+builder.Services.AddScoped<ITasksService, TasksService>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();

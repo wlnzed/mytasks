@@ -1,42 +1,14 @@
 using Microsoft.AspNetCore.Mvc;
 using MyTasksBackend.Models;
+using MyTasksBackend.Services;
 
 namespace MyTasksBackend.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class TasksController(ILogger<TasksController> _logger) : ControllerBase
+public class TasksController(ITasksService _tasksService) : ControllerBase
 {
-    private static readonly IEnumerable<TaskModel> Tasks = [
-        new()
-        {
-            Title = "Task #1",
-            Description = "The first task",
-            IsDone = true,
-            Subtasks = [],
-        },
-        new()
-        {
-            Title = "Task #2",
-            Description = "The second task",
-            IsDone = false,
-            Subtasks = [
-                new() {
-                    Title = "Subtask #1",
-                    IsDone = false,
-                },
-                new() {
-                    Title = "Subtask #2",
-                    IsDone = true,
-                }
-            ]
-        }
-    ];
-
+    // TODO: retrieve and return tasks from a database
     [HttpGet(Name = "GetTasks")]
-    public IEnumerable<TaskModel> Get()
-    {
-        _logger.Log(LogLevel.Information, new EventId(), "returning tasks...");
-        return Tasks;
-    }
+    public IEnumerable<TaskModel> Get() => _tasksService.Get();
 }
