@@ -2,18 +2,15 @@ import { useState, useEffect } from "react";
 import Task from "./components/Task";
 import styles from "./App.module.css";
 
-interface TaskData {
-  title: string;
-  description: string;
-  isDone: boolean;
-  subtasks: {
-    title: string;
-    isDone: boolean;
-  }[];
-}
-
-function App() {
-  const [tasks, setTasks] = useState<TaskData[]>([]);
+const App = () => {
+  const [tasks, setTasks] = useState<
+    {
+      title: string;
+      description: string;
+      isDone: boolean;
+      subtasks: { title: string; isDone: boolean }[];
+    }[]
+  >([]);
 
   useEffect(() => {
     fetch(import.meta.env.VITE_BACKEND_URL + "/tasks")
@@ -47,6 +44,6 @@ function App() {
       </ul>
     </div>
   );
-}
+};
 
 export default App;
