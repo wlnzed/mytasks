@@ -1,6 +1,6 @@
-import { FC } from "react";
-import Subtask from "./subtask";
-import styles from "./task.module.css";
+import React from "react";
+import Subtask from "./Subtask";
+import styles from "./Task.module.css";
 
 interface Props {
   title: string,
@@ -12,7 +12,7 @@ interface Props {
   }[],
 }
 
-const Task: FC<Props> = ({ title, description, isDone, subtasks }) => (
+const Task: React.FC<Props> = ({ title, description, isDone, subtasks }) => (
   <li className={styles.task}>
     <h1 className={styles.taskTitle}>
       {title}

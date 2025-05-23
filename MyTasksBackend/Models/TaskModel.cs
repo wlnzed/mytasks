@@ -6,7 +6,7 @@ public class TaskModel
     
     public required string Description { get; set; }
 
-    public required bool Done { get; set; }
+    public required bool IsDone { get; set; }
 
     public required SubtaskModel[] Subtasks { get; set; }
 }
