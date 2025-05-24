@@ -1,7 +1,7 @@
-using MyTasksBackend.Models;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 using MyTasksBackend.Config;
+using MyTasksBackend.Models;
 
 namespace MyTasksBackend.Services;
 
