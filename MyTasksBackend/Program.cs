@@ -17,7 +17,7 @@ builder.Services.AddCors(options =>
 builder.Services.Configure<DatabaseConfig>(
     builder.Configuration.GetSection("Database"));
 
-builder.Services.AddScoped<ITasksService, TasksService>();
+builder.Services.AddSingleton<ITasksService, TasksService>();
 
 var app = builder.Build();
 
