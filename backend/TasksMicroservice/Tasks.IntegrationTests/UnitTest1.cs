@@ -1,4 +1,4 @@
-﻿namespace MyTasksBackend.UnitTests;
+﻿namespace Tasks.IntegrationTests;
 
 public class UnitTest1
 {

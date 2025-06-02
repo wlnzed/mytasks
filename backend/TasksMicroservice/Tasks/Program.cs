@@ -1,5 +1,5 @@
-using MyTasksBackend.Config;
-using MyTasksBackend.Services;
+using Tasks.Config;
+using Tasks.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

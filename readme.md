@@ -1,6 +1,6 @@
 # The Ideal
 Create an end-to-end encrypted cross-platform to-do app with account-wide 
-synchronisation and 2FA for ultimate security and privacy!
+synchronisation and 2FA for ultimate security and privacy.
 
 # Features
 > Stars reflect importance
@@ -17,11 +17,12 @@ synchronisation and 2FA for ultimate security and privacy!
 
 # Tech Stack
 - **Frontend**: [TypeScript](https://www.typescriptlang.org/)/[React](https://react.dev/)
-  1. **Web**: [NEXT.js SPA](https://nextjs.org/docs/app/guides/single-page-applications)
-  2. **Mobile** (iOS and Android): [NEXT.js + Tauri](https://v2.tauri.app/start/frontend/nextjs/)
-  3. **Desktop** (Windows, MacOS, and Linux): 
-    [Next.js + Capacitator](https://capgo.app/blog/building-a-native-mobile-app-with-nextjs-and-capacitor)
+  - Shell
+  - Auth Microfrontend
+  - Tasks Microfrontend
 - **Backend**: [C# (.NET WebAPI)](https://dotnet.microsoft.com/en-us/apps/aspnet/apis)
+  - Auth Microservice
+  - Tasks Microservice
 - **Database**: [Amazon DynamoDB](https://aws.amazon.com/dynamodb/)
 - **Authentication & 2FA**: [Amazon Cognito](https://aws.amazon.com/cognito/)
 - **Containers & Orchestration**:

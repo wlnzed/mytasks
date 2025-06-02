@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using MyTasksBackend.Models;
-using MyTasksBackend.Services;
+using Tasks.Models;
+using Tasks.Services;
 
-namespace MyTasksBackend.Controllers;
+namespace Tasks.Controllers;
 
 [ApiController]
 [Route("[controller]")]

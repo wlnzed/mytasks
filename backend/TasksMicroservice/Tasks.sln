@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyTasksBackend", "MyTasksBackend\MyTasksBackend.csproj", "{2775732D-7933-43DD-87EF-A41E75BABA47}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasks", "Tasks\Tasks.csproj", "{2775732D-7933-43DD-87EF-A41E75BABA47}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyTasksBackend.UnitTests", "MyTasksBackend.UnitTests\MyTasksBackend.UnitTests.csproj", "{CD3F17E4-6A16-4F84-A394-A7084FC880EA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasks.UnitTests", "Tasks.UnitTests\Tasks.UnitTests.csproj", "{CD3F17E4-6A16-4F84-A394-A7084FC880EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyTasksBackend.IntegrationTests", "MyTasksBackend.IntegrationTests\MyTasksBackend.IntegrationTests.csproj", "{9F58DFB8-2BC6-4838-8D53-A533665F1300}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasks.IntegrationTests", "Tasks.IntegrationTests\Tasks.IntegrationTests.csproj", "{9F58DFB8-2BC6-4838-8D53-A533665F1300}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

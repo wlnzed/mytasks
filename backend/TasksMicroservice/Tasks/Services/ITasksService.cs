@@ -1,6 +1,6 @@
-using MyTasksBackend.Models;
+using Tasks.Models;
 
-namespace MyTasksBackend.Services;
+namespace Tasks.Services;
 
 public interface ITasksService
 {

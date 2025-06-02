@@ -1,7 +1,7 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace MyTasksBackend.Models;
+namespace Tasks.Models;
 
 public class TaskModel
 {

@@ -1,9 +1,9 @@
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
-using MyTasksBackend.Config;
-using MyTasksBackend.Models;
+using Tasks.Config;
+using Tasks.Models;
 
-namespace MyTasksBackend.Services;
+namespace Tasks.Services;
 
 public class TasksService : ITasksService
 {

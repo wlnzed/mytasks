@@ -1,4 +1,4 @@
-namespace MyTasksBackend.Config;
+namespace Tasks.Config;
 
 public class DatabaseConfig
 {
