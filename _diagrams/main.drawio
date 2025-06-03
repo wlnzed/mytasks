@@ -4,11 +4,11 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="fL-8VVCd73iSeGYNEX2D-4" value="Amazon CloudFront&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="-540" y="-850" width="180" height="200" as="geometry" />
+        <mxCell id="K_u1Kb7oKMPgJKE00YBO-1" value="Amazon CloudFront&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-535" y="-820" width="170" height="160" as="geometry" />
         </mxCell>
-        <mxCell id="fL-8VVCd73iSeGYNEX2D-2" value="Amazon CloudFront&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="-1190" y="-850" width="190" height="200" as="geometry" />
+        <mxCell id="fL-8VVCd73iSeGYNEX2D-2" value="Amazon CloudFront&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-1180" y="-820" width="170" height="160" as="geometry" />
         </mxCell>
         <mxCell id="TE3JeXh7_A4Z1Bji4Hqj-10" value="Amazon EKS&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="-1000" y="-1120" width="460" height="250" as="geometry" />
@@ -56,10 +56,10 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="7RjIYqkzmJ3zHGpzatDi-12" value="Amazon Cognito" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;" parent="1" vertex="1">
-          <mxGeometry x="-1180" y="-1040" width="140" height="90" as="geometry" />
+          <mxGeometry x="-1180" y="-1015" width="140" height="90" as="geometry" />
         </mxCell>
         <mxCell id="7RjIYqkzmJ3zHGpzatDi-14" value="Amazon DynamoDB" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;" parent="1" vertex="1">
-          <mxGeometry x="-520" y="-1040" width="140" height="90" as="geometry" />
+          <mxGeometry x="-505" y="-1015" width="140" height="90" as="geometry" />
         </mxCell>
         <mxCell id="7RjIYqkzmJ3zHGpzatDi-17" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Sign In Workflow&lt;/h1&gt;&lt;p&gt;1. User navigates to the URL and is greeted with the login page served by the Auth Microfrontend.&lt;/p&gt;&lt;p&gt;2. User enters email and password and clicks submit.&lt;/p&gt;&lt;p&gt;3. The request is input-validated on the frontend and if is valid, sent to and input-validated at the Auth Microservice. If validation fails in either stage, the UI updates with the error messages and the workflow ends.&lt;/p&gt;&lt;p&gt;4. Auth service sends the details to Amazon Cognito for authentication&lt;/p&gt;&lt;p&gt;5. Amazon Cognito returns either success alongside JWT containing user email that the Tasks Microservice can validate or failure.&lt;/p&gt;&lt;p&gt;6. If failure is returned, the UI updates with the error messages and the workflow ends.&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;If success is returned user is navigated to the tasks page served by the Tasks MFE and upon navigation the JWT retrieved from the Auth Microservice is sent to the Tasks Microservice with a get tasks request and the workflow continues.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;8. Tasks Microservice validates the JWT, extracts the email from it and sends it to Amazon DynamoDB.&lt;/p&gt;&lt;p&gt;9. DynamoDB returns all the tasks associated with the user email to the Tasks Microservice.&lt;/p&gt;&lt;p&gt;10. Tasks Microservice returns the tasks to the Tasks Microfrontend.&lt;/p&gt;&lt;p&gt;11. Tasks Microfrontend lists all the tasks returned.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="-1180" y="-610" width="440" height="470" as="geometry" />
@@ -70,25 +70,16 @@
         <mxCell id="7RjIYqkzmJ3zHGpzatDi-19" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;TODO&lt;/h1&gt;&lt;div&gt;1. Create Task&lt;/div&gt;&lt;div&gt;2. Edit Task&lt;/div&gt;&lt;div&gt;3. Delete Task&lt;/div&gt;&lt;div&gt;4. Add Subtask to Task&lt;/div&gt;&lt;div&gt;5. Mark Task Done&lt;/div&gt;&lt;div&gt;6. Mark Subtask Done&lt;/div&gt;&lt;div&gt;7. Sign Out&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="-1180" y="-140" width="170" height="220" as="geometry" />
         </mxCell>
-        <mxCell id="TE3JeXh7_A4Z1Bji4Hqj-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0;entryDx=80;entryDy=90;entryPerimeter=0;curved=1;startArrow=classic;startFill=1;" parent="1" source="7RjIYqkzmJ3zHGpzatDi-4" target="7RjIYqkzmJ3zHGpzatDi-14" edge="1">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="-565" y="-970" />
-              <mxPoint x="-565" y="-910" />
-              <mxPoint x="-440" y="-910" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
         <mxCell id="TE3JeXh7_A4Z1Bji4Hqj-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0;exitY=0;exitDx=80;exitDy=90;exitPerimeter=0;curved=1;startArrow=classic;startFill=1;" parent="1" source="7RjIYqkzmJ3zHGpzatDi-12" target="7RjIYqkzmJ3zHGpzatDi-1" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="-1100" y="-900" />
-              <mxPoint x="-990" y="-900" />
+              <mxPoint x="-1100" y="-890" />
+              <mxPoint x="-990" y="-890" />
               <mxPoint x="-990" y="-970" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="fL-8VVCd73iSeGYNEX2D-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;curved=1;dashed=1;" edge="1" parent="1" source="fL-8VVCd73iSeGYNEX2D-1" target="7RjIYqkzmJ3zHGpzatDi-6">
+        <mxCell id="fL-8VVCd73iSeGYNEX2D-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;curved=1;dashed=1;" parent="1" source="fL-8VVCd73iSeGYNEX2D-1" target="7RjIYqkzmJ3zHGpzatDi-6" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="-1095" y="-630" />
@@ -96,10 +87,10 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="fL-8VVCd73iSeGYNEX2D-1" value="Auth Microfrontend" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="fL-8VVCd73iSeGYNEX2D-1" value="Auth Microfrontend" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="-1160" y="-790" width="130" height="110" as="geometry" />
         </mxCell>
-        <mxCell id="fL-8VVCd73iSeGYNEX2D-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;curved=1;dashed=1;" edge="1" parent="1" source="fL-8VVCd73iSeGYNEX2D-3" target="7RjIYqkzmJ3zHGpzatDi-8">
+        <mxCell id="fL-8VVCd73iSeGYNEX2D-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;curved=1;dashed=1;" parent="1" source="fL-8VVCd73iSeGYNEX2D-3" target="7RjIYqkzmJ3zHGpzatDi-8" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="-450" y="-630" />
@@ -107,8 +98,17 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="fL-8VVCd73iSeGYNEX2D-3" value="Tasks Microfrontend" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="fL-8VVCd73iSeGYNEX2D-3" value="Tasks Microfrontend" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="-515" y="-790" width="130" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="K_u1Kb7oKMPgJKE00YBO-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0;entryDx=80;entryDy=90;entryPerimeter=0;curved=1;startArrow=classic;startFill=1;" edge="1" parent="1" source="7RjIYqkzmJ3zHGpzatDi-4" target="7RjIYqkzmJ3zHGpzatDi-14">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-555" y="-970" />
+              <mxPoint x="-555" y="-890" />
+              <mxPoint x="-425" y="-890" />
+            </Array>
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
