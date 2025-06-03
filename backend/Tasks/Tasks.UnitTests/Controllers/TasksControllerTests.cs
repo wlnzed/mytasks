@@ -1,19 +1,18 @@
-﻿using Tasks.Services;
-using Tasks.Controllers;
+﻿using Tasks.Controllers;
 using Tasks.UnitTests.Fakes;
-using Microsoft.AspNetCore.Mvc.Testing;
+using Amazon.DynamoDBv2.DataModel;
 
 namespace Tasks.UnitTests.Controllers;
 
 public class TasksControllerTests
 {
-    private ITasksService _fakeTasksService;
+    private IDynamoDBContext _fakeDbContext;
     private TasksController _sut;
 
     public TasksControllerTests()
     {
-        _fakeTasksService = new FakeTasksService();
-        _sut = new TasksController(_fakeTasksService);
+        _fakeDbContext = new FakeDynamoDbContext();
+        _sut = new TasksController(_fakeDbContext);
     }
 
     [Fact]

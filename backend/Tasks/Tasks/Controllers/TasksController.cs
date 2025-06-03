@@ -1,14 +1,23 @@
+using Amazon.DynamoDBv2.DataModel;
 using Microsoft.AspNetCore.Mvc;
 using Tasks.Models;
-using Tasks.Services;
 
 namespace Tasks.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class TasksController(ITasksService _tasksService) : ControllerBase
+public class TasksController(IDynamoDBContext _dbContext) : ControllerBase
 {
-    // TODO: retrieve and return tasks from a database
     [HttpGet(Name = "GetTasks")]
-    public IEnumerable<TaskModel> Get() => _tasksService.Get();
+    public async Task<IEnumerable<TaskModel>> Get()
+    {
+        string? ownerEmail;
+        var foundUserEmailCookie = Request.Cookies.TryGetValue("user-email", out ownerEmail);
+        if (!foundUserEmailCookie)
+        {
+            return [];
+        }
+
+        return await _dbContext.QueryAsync<TaskModel>(ownerEmail).GetNextSetAsync();
+    }
 }

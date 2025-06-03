@@ -1,32 +1,34 @@
-using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
+using Amazon.DynamoDBv2.DataModel;
 
 namespace Tasks.Models;
 
+[DynamoDBTable("mytasks-tasks-dev")]
 public class TaskModel
 {
-    [BsonId]
-    [BsonRepresentation(BsonType.ObjectId)]
+    [DynamoDBHashKey("OwnerEmail")]
+    public string? OwnerEmail { get; set; }
+
+    [DynamoDBRangeKey("Id")]
     public string? Id { get; set; }
 
-    [BsonElement("title")]
+    [DynamoDBProperty("Title")]
     public string? Title { get; set; }
 
-    [BsonElement("description")]
+    [DynamoDBProperty("Description")]
     public string? Description { get; set; }
 
-    [BsonElement("isDone")]
+    [DynamoDBProperty("IsDone")]
     public bool? IsDone { get; set; }
 
-    [BsonElement("subtasks")]
-    public IEnumerable<Subtask>? Subtasks { get; set; }
+    [DynamoDBProperty("Subtasks")]
+    public Subtask[]? Subtasks { get; set; }
 }
 
 public class Subtask
 {
-    [BsonElement("title")]
+    [DynamoDBProperty("Title")]
     public string? Title { get; set; }
 
-    [BsonElement("isDone")]
+    [DynamoDBProperty("IsDone")]
     public bool? IsDone { get; set; }
 }

@@ -13,7 +13,9 @@ const App = () => {
   >([]);
 
   useEffect(() => {
-    fetch(import.meta.env.VITE_BACKEND_URL + "/tasks")
+    fetch(import.meta.env.VITE_BACKEND_URL + "/tasks", {
+      credentials: "include",
+    })
       .then((resp) => {
         resp
           .json()
@@ -21,11 +23,11 @@ const App = () => {
             setTasks(tasksData);
           })
           .catch((err) => {
-            console.log("error when parsing tasks:\n", err);
+            console.log("error while parsing tasks: ", err);
           });
       })
       .catch((err) => {
-        console.log("error when fetching tasks:\n" + err);
+        console.log("error while fetching tasks: " + err);
       });
   }, []);
 

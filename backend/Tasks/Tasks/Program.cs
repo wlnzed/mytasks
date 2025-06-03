@@ -1,5 +1,5 @@
-using Tasks.Config;
-using Tasks.Services;
+using Amazon.DynamoDBv2;
+using Amazon.DynamoDBv2.DataModel;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,14 +13,14 @@ builder.Services.AddCors(options =>
         policy.WithOrigins(
             builder.Configuration.GetValue<string>("FrontendShellUrl")!,
             builder.Configuration.GetValue<string>("TasksMfeUrl")!
-        )
+        ).AllowCredentials()
     )
 );
 
-builder.Services.Configure<DatabaseConfig>(
-    builder.Configuration.GetSection("Database"));
-
-builder.Services.AddSingleton<ITasksService, TasksService>();
+var awsOptions = builder.Configuration.GetAWSOptions();
+builder.Services.AddDefaultAWSOptions(awsOptions);
+builder.Services.AddAWSService<IAmazonDynamoDB>();
+builder.Services.AddScoped<IDynamoDBContext, DynamoDBContext>();
 
 var app = builder.Build();
 
