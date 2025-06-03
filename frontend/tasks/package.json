@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@originjs/vite-plugin-federation": "^1.4.1",
+    "@types/node": "^22.15.29",
+    "dotenv": "^16.5.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },
