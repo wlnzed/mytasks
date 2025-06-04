@@ -8,7 +8,7 @@ namespace Tasks.Controllers;
 [Route("[controller]")]
 public class TasksController(IDynamoDBContext _dbContext) : ControllerBase
 {
-    [HttpGet(Name = "GetTasks")]
+    [HttpGet]
     public async Task<IEnumerable<TaskModel>> Get()
     {
         string? ownerEmail;
