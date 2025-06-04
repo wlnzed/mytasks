@@ -1,28 +1,21 @@
-import { useState } from "react";
 import SignUp from "./components/SignUp";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import styles from "./App.module.css";
 
-const views = {
-  signedIn: "SIGNED_IN",
-  signUp: "SIGN_UP",
-  signIn: "SIGN_IN",
-};
-
 const App = () => {
-  const [view, setView] = useState(views.signUp);
+  // window.location.pathname = "/sign-in";
 
-  const render = () => {
-    switch (view) {
-      case views.signedIn:
-        return <>TODO: SIGNED IN VIEW</>;
-      case views.signUp:
-        return <SignUp viewSignIn={() => setView(views.signIn)} />;
-      case views.signIn:
-        return <>TODO: SIGN IN VIEW</>;
-    }
-  };
-
-  return <div className={styles.app}>{render()}</div>;
+  return (
+    <div className={styles.app}>
+      <Router>
+        <Routes>
+          <Route path="/" element={<>TODO: SIGNED IN VIEW</>} />
+          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/sign-in" element={<>TODO: SIGN IN VIEW</>} />
+        </Routes>
+      </Router>
+    </div>
+  );
 };
 
 export default App;

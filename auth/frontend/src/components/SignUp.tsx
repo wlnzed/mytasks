@@ -1,11 +1,7 @@
 import { useState } from "react";
 import styles from "./SignUp.module.css";
 
-interface Props {
-  viewSignIn: () => void;
-}
-
-const SignUp: React.FC<Props> = ({ viewSignIn }) => {
+const SignUp = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
@@ -68,7 +64,13 @@ const SignUp: React.FC<Props> = ({ viewSignIn }) => {
         Submit
       </button>
 
-      <button className={styles.signInButton} onClick={viewSignIn}>
+      <button
+        className={styles.signInButton}
+        onClick={(e) => {
+          e.preventDefault();
+          window.location.pathname = "/sign-in";
+        }}
+      >
         Sign In
       </button>
     </form>
