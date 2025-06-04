@@ -3,10 +3,16 @@ using Microsoft.AspNetCore.Mvc;
 namespace Auth.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("sign-up")]
 public class SignUpController(ILogger<SignUpController> _logger) : ControllerBase
 {
-    [HttpPost(Name = "PostSignUp")]
-    public void Post() =>
-        _logger.LogInformation("sign up request has been posted");
+    [HttpPost]
+    public void Post([FromBody] SignUpRequest request) =>
+        _logger.LogInformation(
+            "sign up request has been posted with " +
+            $"username \"{request.Username}\", password \"{request.Password}\", " +
+            $"and password confirmation \"{request.PasswordConfirmation}\""
+        );
 }
+
+public record SignUpRequest(string Username, string Password, string PasswordConfirmation);
