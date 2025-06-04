@@ -13,6 +13,8 @@ const SignUp = () => {
       method: "post",
       body: JSON.stringify({ username, password, passwordConfirmation }),
       headers: { "Content-Type": "application/json" },
+    }).catch((err) => {
+      console.log("error while signing up: ", err);
     });
   };
 
