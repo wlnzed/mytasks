@@ -11,8 +11,7 @@ public class SignUpController(ILogger<SignUpController> _logger) : ControllerBas
         _logger.LogInformation(
             "sign up request has been posted with " +
             $"username \"{request.Username}\", password \"{request.Password}\", " +
-            $"and password confirmation \"{request.PasswordConfirmation}\""
-        );
+            $"and password confirmation \"{request.PasswordConfirmation}\"");
 }
 
 public record SignUpRequest(string Username, string Password, string PasswordConfirmation);
