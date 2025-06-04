@@ -3,6 +3,11 @@ using Amazon.DynamoDBv2.DataModel;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var awsOptions = builder.Configuration.GetAWSOptions();
+builder.Services.AddDefaultAWSOptions(awsOptions);
+builder.Services.AddAWSService<IAmazonDynamoDB>();
+builder.Services.AddScoped<IDynamoDBContext, DynamoDBContext>();
+
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
@@ -16,11 +21,6 @@ builder.Services.AddCors(options =>
         ).AllowCredentials()
     )
 );
-
-var awsOptions = builder.Configuration.GetAWSOptions();
-builder.Services.AddDefaultAWSOptions(awsOptions);
-builder.Services.AddAWSService<IAmazonDynamoDB>();
-builder.Services.AddScoped<IDynamoDBContext, DynamoDBContext>();
 
 var app = builder.Build();
 
