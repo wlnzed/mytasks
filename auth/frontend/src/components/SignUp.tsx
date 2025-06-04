@@ -11,11 +11,7 @@ const SignUp = () => {
 
     fetch(import.meta.env.VITE_BACKEND_URL + "/sign-up", {
       method: "post",
-      body: JSON.stringify({
-        username: username,
-        password: password,
-        passwordConfirmation: passwordConfirmation,
-      }),
+      body: JSON.stringify({ username, password, passwordConfirmation }),
       headers: { "Content-Type": "application/json" },
     });
   };
