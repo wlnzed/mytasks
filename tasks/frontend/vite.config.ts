@@ -19,13 +19,13 @@ export default defineConfig({
     }),
   ],
   server: {
-    port: 5174,
+    port: 5175,
     headers: {
       "Access-Control-Allow-Origin": process.env.VITE_FRONTEND_SHELL_URL,
     },
   },
   preview: {
-    port: 5174,
+    port: 5175,
   },
   build: {
     target: "esnext",

@@ -8,7 +8,8 @@ var localCorsPolicyName = "localdev";
 builder.Services.AddCors(options =>
     options.AddPolicy(localCorsPolicyName, policy =>
         policy.WithOrigins(
-            builder.Configuration.GetValue<string>("FrontendUrl")!
+            builder.Configuration.GetValue<string>("FrontendShellUrl")!,
+            builder.Configuration.GetValue<string>("AuthMfeUrl")!
         ).AllowAnyHeader()
     )
 );

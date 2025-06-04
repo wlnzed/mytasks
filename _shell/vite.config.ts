@@ -14,6 +14,7 @@ export default defineConfig({
     federation({
       name: "shell",
       remotes: {
+        "auth-mfe": process.env.VITE_AUTH_MFE_URL + "/assets/remoteEntry.js",
         "tasks-mfe": process.env.VITE_TASKS_MFE_URL + "/assets/remoteEntry.js",
       },
       shared: ["react", "react-dom"],

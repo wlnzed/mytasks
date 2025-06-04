@@ -1,5 +1,9 @@
+declare module "auth-mfe/App" {
+  const App: React.ComponentType;
+  export default App;
+}
+
 declare module "tasks-mfe/App" {
-  import { ComponentType } from "react";
-  const App: ComponentType;
+  const App: React.ComponentType;
   export default App;
 }
