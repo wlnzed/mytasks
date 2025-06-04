@@ -1,10 +1,11 @@
 using System.Diagnostics.CodeAnalysis;
 using Amazon.DynamoDBv2.DataModel;
 using Amazon.DynamoDBv2.DocumentModel;
+using Tasks.Models;
 
 namespace Tasks.UnitTests.Fakes;
 
-public class FakeDynamoDbContext : IDynamoDBContext
+public class FakeDynamoDbContext(string _hashKey, List<TaskModel> _tasks) : IDynamoDBContext
 {
     public IBatchGet<T> CreateBatchGet<[DynamicallyAccessedMembers((DynamicallyAccessedMemberTypes)(-1))] T>()
     {
@@ -298,7 +299,14 @@ public class FakeDynamoDbContext : IDynamoDBContext
 
     public IAsyncSearch<T> QueryAsync<[DynamicallyAccessedMembers((DynamicallyAccessedMemberTypes)(-1))] T>(object hashKeyValue)
     {
-        throw new NotImplementedException();
+        if (hashKeyValue.ToString() == _hashKey)
+        {
+            return (new AsyncSearch<TaskModel>(_tasks) as AsyncSearch<T>)!;
+        }
+        else
+        {
+            return (new AsyncSearch<TaskModel>([]) as AsyncSearch<T>)!;
+        }
     }
 
     public IAsyncSearch<T> QueryAsync<[DynamicallyAccessedMembers((DynamicallyAccessedMemberTypes)(-1))] T>(object hashKeyValue, DynamoDBOperationConfig operationConfig = null!)

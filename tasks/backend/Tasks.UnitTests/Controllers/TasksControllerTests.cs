@@ -1,23 +1,73 @@
-﻿using Tasks.Controllers;
+﻿using Microsoft.AspNetCore.Http.Features;
+using Microsoft.AspNetCore.Mvc;
+using Tasks.Controllers;
+using Tasks.Models;
 using Tasks.UnitTests.Fakes;
-using Amazon.DynamoDBv2.DataModel;
 
 namespace Tasks.UnitTests.Controllers;
 
 public class TasksControllerTests
 {
-    private IDynamoDBContext _fakeDbContext;
-    private TasksController _sut;
-
-    public TasksControllerTests()
+    [Fact]
+    public async Task GivenNoUserEmail_WhenGetTasks_ThenEmptyArrayOfTasks()
     {
-        _fakeDbContext = new FakeDynamoDbContext();
-        _sut = new TasksController(_fakeDbContext);
+        var fakeDbContext = new FakeDynamoDbContext("", []);
+        var httpContext = new DefaultHttpContext();
+        var sut = new TasksController(fakeDbContext);
+        sut.ControllerContext = new ControllerContext();
+        sut.ControllerContext.HttpContext = new DefaultHttpContext();
+
+        var tasks = await sut.Get();
+        Assert.Equal(tasks, []);
     }
 
     [Fact]
-    public void TestGet()
+    public async Task GivenUserEmail_WhenGetTasks_ThenTasksForUserEmail()
     {
-        var tasks = _sut.Get();
+        var ownerEmail = "user@email.com";
+        List<TaskModel> expectedTasks =
+        [
+            new() {
+                Id = "0",
+                Title = "Task #1",
+                Description = "Do something",
+                IsDone = false,
+                Subtasks = [
+                    new() {
+                        Title = "Do the first part",
+                        IsDone = true
+                    },
+                    new() {
+                        Title = "Do the second part",
+                        IsDone = false,
+                    }
+                ]
+            },
+            new() {
+                Id = "1",
+                Title = "Task #2",
+                Description = "Do something else",
+                IsDone = true,
+                Subtasks = []
+            },
+        ];
+
+        var fakeDbContext = new FakeDynamoDbContext(ownerEmail, expectedTasks);
+        var httpContext = new DefaultHttpContext();
+        var sut = new TasksController(fakeDbContext);
+
+        var cookies = new FakeRequestCookieCollection("user-email", ownerEmail);
+        var cookiesFeature = new RequestCookiesFeature(cookies);
+        var features = new FeatureCollection();
+        features.Set<IRequestCookiesFeature>(cookiesFeature);
+        var context = new DefaultHttpContext(features);
+
+        sut.ControllerContext = new ControllerContext();
+        sut.ControllerContext.HttpContext = context;
+
+        var actualTasks = await sut.Get();
+
+        Assert.Equal(expectedTasks, actualTasks);
     }
 }
+
