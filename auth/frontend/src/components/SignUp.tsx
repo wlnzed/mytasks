@@ -1,7 +1,11 @@
 import { useState } from "react";
 import styles from "./SignUp.module.css";
 
-const SignUp = () => {
+interface Props {
+  viewSignIn: () => void;
+}
+
+const SignUp: React.FC<Props> = ({ viewSignIn }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
@@ -22,6 +26,8 @@ const SignUp = () => {
 
   return (
     <form className={styles.signUpForm}>
+      <h1 className={styles.formTitle}>Sign Up:</h1>
+
       <label className={styles.usernameInputLabel} htmlFor="username-input">
         Username:
       </label>
@@ -60,6 +66,10 @@ const SignUp = () => {
 
       <button className={styles.submitButton} type="submit" onClick={submit}>
         Submit
+      </button>
+
+      <button className={styles.signInButton} onClick={viewSignIn}>
+        Sign In
       </button>
     </form>
   );

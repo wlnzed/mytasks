@@ -1,29 +1,44 @@
 .signUpForm {
+  padding: auto;
+  text-align: center;
+}
+
+.formTitle {
+  display: inline;
+  font-size: 1.2rem;
+  margin: 0 1rem 0 0;
 }
 
 .usernameInputLabel {
-  margin-right: 0.5rem;
+  margin-right: 0.3rem;
+  font-weight: 500;
 }
 
 .usernameInput {
-  margin-right: 1.5rem;
+  margin-right: 1rem;
 }
 
 .passwordInputLabel {
-  margin-right: 0.5rem;
+  margin-right: 0.3rem;
+  font-weight: 500;
 }
 
 .passwordInput {
-  margin-right: 1.5rem;
+  margin-right: 1rem;
 }
 
 .passwordConfirmationInputLabel {
-  margin-right: 0.5rem;
+  margin-right: 0.3rem;
+  font-weight: 500;
 }
 
 .passwordConfirmationInput {
-  margin-right: 1.5rem;
+  margin-right: 1rem;
 }
 
 .submitButton {
+  margin-right: 0.5rem;
+}
+
+.signInButton {
 }
