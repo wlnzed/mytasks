@@ -2,7 +2,7 @@ using Amazon.DynamoDBv2.DataModel;
 
 namespace Tasks.Models;
 
-[DynamoDBTable("mytasks-tasks-dev")]
+[DynamoDBTable("mytasks-tasks")]
 public class TaskModel
 {
     [DynamoDBHashKey]

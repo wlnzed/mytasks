@@ -6,7 +6,15 @@ var builder = WebApplication.CreateBuilder(args);
 var awsOptions = builder.Configuration.GetAWSOptions();
 builder.Services.AddDefaultAWSOptions(awsOptions);
 builder.Services.AddAWSService<IAmazonDynamoDB>();
-builder.Services.AddScoped<IDynamoDBContext, DynamoDBContext>();
+builder.Services.AddScoped<IDynamoDBContext>((provider) =>
+{
+    var contextBuilder = new DynamoDBContextBuilder();
+    contextBuilder.ConfigureContext((config) =>
+    {
+        config.TableNamePrefix = builder.Configuration.GetValue<string>("DynamoDbTablePrefix")!;
+    });
+    return contextBuilder.Build();
+});
 
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
