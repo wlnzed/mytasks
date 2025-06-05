@@ -13,10 +13,7 @@ public class TasksController(IDynamoDBContext _dbContext) : ControllerBase
     {
         string? ownerEmail;
         var foundUserEmailCookie = Request.Cookies.TryGetValue("user-email", out ownerEmail);
-        if (!foundUserEmailCookie)
-        {
-            return [];
-        }
+        if (!foundUserEmailCookie) return [];
 
         return await _dbContext.QueryAsync<TaskModel>(ownerEmail).GetNextSetAsync();
     }
