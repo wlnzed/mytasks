@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc.Testing;
 
-namespace Tasks.IntegrationTests.Configuration;
+namespace Tasks.IntegrationTests;
 
 public class CustomWebApplicationFactory : WebApplicationFactory<Program>
 {
