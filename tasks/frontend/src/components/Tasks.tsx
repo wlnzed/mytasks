@@ -21,9 +21,10 @@ const Tasks = () => {
 
   return (
     <ul className={styles.tasks}>
-      {tasks.map((task, i) => (
+      {tasks.map((task) => (
         <Task
-          key={i}
+          key={task.id}
+          id={task.id}
           title={task.title}
           description={task.description}
           isDone={task.isDone}

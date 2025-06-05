@@ -25,6 +25,9 @@ public class TaskJsonModel
 
 public class SubtaskJson
 {
+    [JsonPropertyName("id")]
+    public string? Id { get; set; }
+
     [JsonPropertyName("title")]
     public string? Title { get; set; }
 

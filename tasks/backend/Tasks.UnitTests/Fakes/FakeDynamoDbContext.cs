@@ -16,10 +16,12 @@ public class FakeDynamoDbContext() : IDynamoDBContext
             IsDone = false,
             Subtasks = [
                 new() {
+                    Id = "cfa90295-a1aa-47e6-b068-2fd46b996283",
                     Title = "Do the first part",
                     IsDone = true
                 },
                 new() {
+                    Id = "2e35f9ab-16a0-4f3f-9433-0eafaa70753e",
                     Title = "Do the second part",
                     IsDone = false,
                 }

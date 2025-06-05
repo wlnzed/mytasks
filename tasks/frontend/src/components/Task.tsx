@@ -17,8 +17,13 @@ const Task: React.FC<ITask> = ({ title, description, isDone, subtasks }) => (
     <footer className={styles.taskFooter}>
       {subtasks.length > 0 && (
         <ul className={styles.subtasks}>
-          {subtasks.map((subtask, i) => (
-            <Subtask key={i} title={subtask.title} isDone={subtask.isDone} />
+          {subtasks.map((subtask) => (
+            <Subtask
+              key={subtask.id}
+              id={subtask.id}
+              title={subtask.title}
+              isDone={subtask.isDone}
+            />
           ))}
         </ul>
       )}

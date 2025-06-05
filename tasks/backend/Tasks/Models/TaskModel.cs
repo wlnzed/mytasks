@@ -22,6 +22,8 @@ public class TaskModel
 
 public class Subtask
 {
+    public string? Id { get; set; }
+
     public string? Title { get; set; }
 
     public bool? IsDone { get; set; }
