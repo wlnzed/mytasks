@@ -21,12 +21,10 @@ public class TasksApiTests
     {
         var expectedTasks = "[]";
 
-        var request = new HttpRequestMessage(HttpMethod.Get, path);
-        var response = await _client.SendAsync(request);
+        var response = await _client.GetAsync(path);
 
         response.EnsureSuccessStatusCode();
         var actualTasks = await response.Content.ReadAsStringAsync();
-
         Assert.Equal(expectedTasks, actualTasks);
 
     }
@@ -42,7 +40,6 @@ public class TasksApiTests
 
         response.EnsureSuccessStatusCode();
         var actualTasks = await response.Content.ReadAsStringAsync();
-
         Assert.Equal(expectedTasks, actualTasks);
 
     }
@@ -86,7 +83,6 @@ public class TasksApiTests
 
         response.EnsureSuccessStatusCode();
         var actualTasks = await response.Content.ReadAsStringAsync();
-
         Assert.Equal(expectedTasks, actualTasks);
     }
 }
