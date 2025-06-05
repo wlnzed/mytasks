@@ -11,7 +11,7 @@ public class TasksControllerTests
     [Fact]
     public async Task GivenNoUserEmail_WhenGetTasks_ThenEmptyArrayOfTasks()
     {
-        var fakeDbContext = new FakeDynamoDbContext("", []);
+        var fakeDbContext = new FakeDynamoDbContext([]);
         var httpContext = new DefaultHttpContext();
         var sut = new TasksController(fakeDbContext);
         sut.ControllerContext = new ControllerContext();
@@ -28,7 +28,8 @@ public class TasksControllerTests
         List<TaskModel> expectedTasks =
         [
             new() {
-                Id = "0",
+                OwnerEmail = ownerEmail,
+                Id = "470ea1ac-dd69-4326-bf2a-697d679b30ab",
                 Title = "Task #1",
                 Description = "Do something",
                 IsDone = false,
@@ -44,7 +45,8 @@ public class TasksControllerTests
                 ]
             },
             new() {
-                Id = "1",
+                OwnerEmail = ownerEmail,
+                Id = "5ad6a5fc-e3a3-4bd2-a22b-0788370ee435",
                 Title = "Task #2",
                 Description = "Do something else",
                 IsDone = true,
@@ -52,7 +54,7 @@ public class TasksControllerTests
             },
         ];
 
-        var fakeDbContext = new FakeDynamoDbContext(ownerEmail, expectedTasks);
+        var fakeDbContext = new FakeDynamoDbContext(expectedTasks);
         var httpContext = new DefaultHttpContext();
         var sut = new TasksController(fakeDbContext);
 

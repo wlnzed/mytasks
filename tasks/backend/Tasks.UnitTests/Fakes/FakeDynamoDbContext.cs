@@ -5,7 +5,7 @@ using Tasks.Models;
 
 namespace Tasks.UnitTests.Fakes;
 
-public class FakeDynamoDbContext(string _hashKey, List<TaskModel> _tasks) : IDynamoDBContext
+public class FakeDynamoDbContext(List<TaskModel> _tasks) : IDynamoDBContext
 {
     public IBatchGet<T> CreateBatchGet<[DynamicallyAccessedMembers((DynamicallyAccessedMemberTypes)(-1))] T>()
     {
@@ -299,14 +299,7 @@ public class FakeDynamoDbContext(string _hashKey, List<TaskModel> _tasks) : IDyn
 
     public IAsyncSearch<T> QueryAsync<[DynamicallyAccessedMembers((DynamicallyAccessedMemberTypes)(-1))] T>(object hashKeyValue)
     {
-        if (hashKeyValue.ToString() == _hashKey)
-        {
-            return (new AsyncSearch<TaskModel>(_tasks) as AsyncSearch<T>)!;
-        }
-        else
-        {
-            return (new AsyncSearch<TaskModel>([]) as AsyncSearch<T>)!;
-        }
+        return (new AsyncSearch<TaskModel>(_tasks.Where(t => t.OwnerEmail == hashKeyValue.ToString()).ToList()) as AsyncSearch<T>)!;
     }
 
     public IAsyncSearch<T> QueryAsync<[DynamicallyAccessedMembers((DynamicallyAccessedMemberTypes)(-1))] T>(object hashKeyValue, DynamoDBOperationConfig operationConfig = null!)
