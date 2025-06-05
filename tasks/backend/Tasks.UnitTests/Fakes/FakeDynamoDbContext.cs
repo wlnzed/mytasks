@@ -5,8 +5,36 @@ using Tasks.Models;
 
 namespace Tasks.UnitTests.Fakes;
 
-public class FakeDynamoDbContext(List<TaskModel> _tasks) : IDynamoDBContext
+public class FakeDynamoDbContext() : IDynamoDBContext
 {
+    private readonly List<TaskModel> _tasks = [
+        new() {
+            OwnerEmail = "user@email.com",
+            Id = "470ea1ac-dd69-4326-bf2a-697d679b30ab",
+            Title = "Task #1",
+            Description = "Do something",
+            IsDone = false,
+            Subtasks = [
+                new() {
+                    Title = "Do the first part",
+                    IsDone = true
+                },
+                new() {
+                    Title = "Do the second part",
+                    IsDone = false,
+                }
+            ]
+        },
+        new() {
+            OwnerEmail = "user@email.com",
+            Id = "5ad6a5fc-e3a3-4bd2-a22b-0788370ee435",
+            Title = "Task #2",
+            Description = "Do something else",
+            IsDone = true,
+            Subtasks = []
+        },
+    ];
+
     public IBatchGet<T> CreateBatchGet<[DynamicallyAccessedMembers((DynamicallyAccessedMemberTypes)(-1))] T>()
     {
         throw new NotImplementedException();

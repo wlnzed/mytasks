@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http.Features;
+﻿using System.Net;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
 using Tasks.Controllers;
 using Tasks.Models;
@@ -8,17 +9,22 @@ namespace Tasks.UnitTests.Controllers;
 
 public class TasksControllerTests
 {
-    [Fact]
-    public async Task GivenNoUserEmail_WhenGetTasks_ThenEmptyArrayOfTasks()
-    {
-        var fakeDbContext = new FakeDynamoDbContext([]);
-        var httpContext = new DefaultHttpContext();
-        var sut = new TasksController(fakeDbContext);
-        sut.ControllerContext = new ControllerContext();
-        sut.ControllerContext.HttpContext = new DefaultHttpContext();
+    private readonly TasksController _sut;
 
-        var tasks = await sut.Get();
-        Assert.Equal(tasks, []);
+    public TasksControllerTests()
+    {
+        _sut = new TasksController(new FakeDynamoDbContext());
+        _sut.ControllerContext = new ControllerContext();
+        _sut.ControllerContext.HttpContext = new DefaultHttpContext();
+    }
+
+    [Fact]
+    public async Task GivenNoUserEmail_WhenGetTasks_ThenUnauthorizedAndEmptyArray()
+    {
+        var response = await _sut.Get();
+
+        Assert.IsType<UnauthorizedResult>(response.Result);
+        Assert.Null(response.Value);
     }
 
     [Fact]
@@ -54,22 +60,21 @@ public class TasksControllerTests
             },
         ];
 
-        var fakeDbContext = new FakeDynamoDbContext(expectedTasks);
-        var httpContext = new DefaultHttpContext();
-        var sut = new TasksController(fakeDbContext);
-
         var cookies = new FakeRequestCookieCollection("user-email", ownerEmail);
         var cookiesFeature = new RequestCookiesFeature(cookies);
         var features = new FeatureCollection();
         features.Set<IRequestCookiesFeature>(cookiesFeature);
         var context = new DefaultHttpContext(features);
+        _sut.ControllerContext = new ControllerContext();
+        _sut.ControllerContext.HttpContext = context;
 
-        sut.ControllerContext = new ControllerContext();
-        sut.ControllerContext.HttpContext = context;
+        var response = await _sut.Get();
 
-        var actualTasks = await sut.Get();
-
-        Assert.Equal(expectedTasks, actualTasks);
+        var okObjectResult = Assert.IsType<OkObjectResult>(response.Result);
+        var actualTasks = okObjectResult.Value! as List<TaskModel>;
+        Assert.Equal(expectedTasks.Count(), actualTasks!.Count());
+        for (var i = 0; i < expectedTasks.Count(); i++)
+            Assert.Equivalent(expectedTasks[i], actualTasks![i]);
     }
 }
 

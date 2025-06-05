@@ -9,12 +9,12 @@ namespace Tasks.Controllers;
 public class TasksController(IDynamoDBContext _dbContext) : ControllerBase
 {
     [HttpGet]
-    public async Task<IEnumerable<TaskModel>> Get()
+    public async Task<ActionResult<List<TaskModel>>> Get()
     {
         string? ownerEmail;
         var foundUserEmailCookie = Request.Cookies.TryGetValue("user-email", out ownerEmail);
-        if (!foundUserEmailCookie) return [];
-
-        return await _dbContext.QueryAsync<TaskModel>(ownerEmail).GetNextSetAsync();
+        if (!foundUserEmailCookie) return Unauthorized();
+        var tasks = await _dbContext.QueryAsync<TaskModel>(ownerEmail).GetNextSetAsync();
+        return Ok(tasks);
     }
 }
