@@ -1,16 +1,9 @@
 import React from "react";
 import Subtask from "./Subtask";
+import type { ITask } from "../types/ITask";
 import styles from "./Task.module.css";
 
-const Task: React.FC<{
-  title: string;
-  description: string;
-  isDone: boolean;
-  subtasks: {
-    title: string;
-    isDone: boolean;
-  }[];
-}> = ({ title, description, isDone, subtasks }) => (
+const Task: React.FC<ITask> = ({ title, description, isDone, subtasks }) => (
   <li className={styles.task}>
     <main className={styles.taskMain}>
       <div className={styles.taskMainLeft}>
