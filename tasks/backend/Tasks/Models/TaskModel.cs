@@ -5,8 +5,10 @@ namespace Tasks.Models;
 [DynamoDBTable("mytasks-tasks-dev")]
 public class TaskModel
 {
+    [DynamoDBHashKey]
     public string? OwnerEmail { get; set; }
 
+    [DynamoDBRangeKey]
     public string? Id { get; set; }
 
     public string? Title { get; set; }
