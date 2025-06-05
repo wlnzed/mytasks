@@ -1,5 +1,4 @@
-﻿using System.Net;
-using Microsoft.AspNetCore.Http.Features;
+﻿using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
 using Tasks.Controllers;
 using Tasks.Models;
@@ -19,7 +18,7 @@ public class TasksControllerTests
     }
 
     [Fact]
-    public async Task GivenNoUserEmail_WhenGetTasks_ThenUnauthorizedAndEmptyArray()
+    public async Task GivenNoUserEmail_WhenGetTasks_ThenUnauthorized()
     {
         var response = await _sut.Get();
 
@@ -31,8 +30,8 @@ public class TasksControllerTests
     public async Task GivenUserEmail_WhenGetTasks_ThenTasksForUserEmail()
     {
         var ownerEmail = "user@email.com";
-        List<TaskModel> expectedTasks =
-        [
+        var expectedTasks = new List<TaskModel>
+        {
             new() {
                 OwnerEmail = ownerEmail,
                 Id = "470ea1ac-dd69-4326-bf2a-697d679b30ab",
@@ -58,7 +57,7 @@ public class TasksControllerTests
                 IsDone = true,
                 Subtasks = []
             },
-        ];
+        };
 
         var cookies = new FakeRequestCookieCollection("user-email", ownerEmail);
         var cookiesFeature = new RequestCookiesFeature(cookies);
