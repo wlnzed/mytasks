@@ -4,9 +4,8 @@ namespace Auth.Controllers;
 
 [ApiController]
 [Route("sign-up")]
-public class SignInController(ILogger<SignInController> _logger) : ControllerBase
+public class SignInController() : ControllerBase
 {
     [HttpPost]
-    public void Post() =>
-        _logger.LogInformation("sign in request has been posted");
+    public void Post() { }
 }
