@@ -7,14 +7,16 @@ import styles from "./App.module.css";
 
 const App = () => {
   useEffect(() => {
-    if (
-      window.location.pathname !== routes.signIn &&
-      window.location.pathname !== routes.signUp
-    ) {
-      if (Cookies.get("user-email") === undefined) {
+    if (Cookies.get("user-email") === undefined) {
+      if (
+        window.location.pathname !== routes.signIn &&
+        window.location.pathname !== routes.signUp
+      ) {
         window.location.pathname = routes.signIn;
-      } else if (window.location.pathname !== routes.home) {
-        // TODO: validate cookie
+      }
+    } else {
+      // TODO: validate cookie
+      if (window.location.pathname !== routes.home) {
         window.location.pathname = routes.home;
       }
     }
