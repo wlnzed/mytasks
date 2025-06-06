@@ -21,16 +21,18 @@ const App = () => {
 
   return (
     <ul className={styles.tasks}>
-      {tasks.map((task) => (
-        <Task
-          key={task.id}
-          id={task.id}
-          title={task.title}
-          description={task.description}
-          isDone={task.isDone}
-          subtasks={task.subtasks}
-        />
-      ))}
+      {tasks &&
+        tasks.length > 0 &&
+        tasks.map((task) => (
+          <Task
+            key={task.id}
+            id={task.id}
+            title={task.title}
+            description={task.description}
+            isDone={task.isDone}
+            subtasks={task.subtasks}
+          />
+        ))}
     </ul>
   );
 };
