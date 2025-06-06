@@ -41,6 +41,10 @@ test("renders TODO: SIGN IN VIEW on sign in route", async () => {
 });
 
 test("sign up view posts sign up request with form content on submit", () => {
+  Object.defineProperty(window, "location", {
+    value: { origin: "https://localhost:1234", pathname: "/sign-up" },
+  });
+
   const spyFetch = vi.fn();
   spyFetch.mockResolvedValue(Promise.resolve());
   global.fetch = spyFetch;
