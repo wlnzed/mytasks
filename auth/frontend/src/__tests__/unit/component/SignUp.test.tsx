@@ -73,5 +73,3 @@ test("navigates to sign in path on sign in button click", async () => {
 
   await waitFor(() => expect(window.location.pathname).toBe("/sign-in"));
 });
-
-// TODO: test navigation to sign in view
