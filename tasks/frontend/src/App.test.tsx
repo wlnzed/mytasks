@@ -3,7 +3,7 @@ import { expect, test, vi } from "vitest";
 import App from "./App";
 
 test("fetches tasks and renders response data on success", () => {
-  const expectedTasks = [
+  const tasks = [
     {
       id: "f89568ed-6b94-447c-8a7a-76837d6eae94",
       title: "Task #1",
@@ -31,19 +31,37 @@ test("fetches tasks and renders response data on success", () => {
     },
   ];
   const spyFetch = vi.fn();
-  spyFetch.mockResolvedValue({ json: async () => expectedTasks });
+  spyFetch.mockResolvedValue({ json: async () => tasks });
   global.fetch = spyFetch;
 
   render(<App />);
 
   setTimeout(() => {
-    screen.getByText(expectedTasks[0].title);
-    screen.getByText(expectedTasks[0].description);
-    screen.getByText(expectedTasks[0].subtasks[0].title);
-    screen.getByText(expectedTasks[0].subtasks[1].title);
-    screen.getByText(expectedTasks[1].title);
-    screen.getByText(expectedTasks[1].description);
+    screen.getByText(tasks[0].title);
+    screen.getByText(tasks[0].description);
+    screen.getByText(tasks[0].subtasks[0].title);
+    screen.getByText(tasks[0].subtasks[1].title);
+    screen.getByText(tasks[1].title);
+    screen.getByText(tasks[1].description);
     expect(screen.getAllByText("done").length).toBe(2);
     expect(screen.getAllByText("not done").length).toBe(2);
+  });
+});
+
+test("logs error on fetch error", () => {
+  const errorMessage = "fetch error";
+  const spyFetch = vi.fn();
+  spyFetch.mockRejectedValue(errorMessage);
+  global.fetch = spyFetch;
+
+  const spyLog = vi.fn();
+  console.log = spyLog;
+
+  render(<App />);
+
+  setTimeout(() => {
+    expect(console.log).toHaveBeenCalledWith(
+      "error while fetching tasks: " + errorMessage,
+    );
   });
 });
