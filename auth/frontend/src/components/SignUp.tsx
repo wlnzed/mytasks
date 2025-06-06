@@ -1,4 +1,5 @@
 import { useState } from "react";
+import signUpApi from "../api/signUp.ts";
 import styles from "./SignUp.module.css";
 
 const SignUp = () => {
@@ -9,11 +10,7 @@ const SignUp = () => {
   const submit = (e: React.MouseEvent) => {
     e.preventDefault();
 
-    fetch(import.meta.env.VITE_BACKEND_URL + "/sign-up", {
-      method: "post",
-      body: JSON.stringify({ username, password, passwordConfirmation }),
-      headers: { "Content-Type": "application/json" },
-    }).catch((err) => {
+    signUpApi.post(username, password, passwordConfirmation).catch((err) => {
       console.log("error while signing up: ", err);
     });
   };
