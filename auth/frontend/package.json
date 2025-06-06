@@ -13,12 +13,14 @@
     "@originjs/vite-plugin-federation": "^1.4.1",
     "@vitejs/plugin-basic-ssl": "^2.0.0",
     "dotenv": "^16.5.0",
+    "js-cookie": "^3.0.5",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router-dom": "^7.6.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
+    "@types/js-cookie": "^3.0.6",
     "@types/node": "^22.15.29",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
