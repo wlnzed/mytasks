@@ -14,4 +14,4 @@ public class SignUpController(ILogger<SignUpController> _logger) : ControllerBas
             $"and password confirmation \"{request.PasswordConfirmation}\"");
 }
 
-record SignUpRequest(string Username, string Password, string PasswordConfirmation);
+public record SignUpRequest(string Username, string Password, string PasswordConfirmation);
