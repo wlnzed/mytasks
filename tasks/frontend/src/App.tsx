@@ -14,7 +14,7 @@ const App = () => {
         res
           .json()
           .then(setTasks)
-          .catch((err) => console.log("error while parsing tasks: ", err));
+          .catch((err) => console.log("error while parsing tasks: " + err));
       })
       .catch((err) => console.log("error while fetching tasks: " + err));
   }, []);
