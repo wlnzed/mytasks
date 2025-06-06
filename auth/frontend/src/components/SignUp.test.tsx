@@ -1,7 +1,15 @@
-import { expect, test, vi } from "vitest";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { afterEach, expect, test, vi } from "vitest";
+import {
+  render,
+  screen,
+  fireEvent,
+  cleanup,
+  waitFor,
+} from "@testing-library/react";
 import SignUp from "./SignUp";
 import signUpApi from "../api/signUp";
+
+afterEach(cleanup);
 
 test("calls sign up api post with form values on submit", () => {
   const spyPost = vi.fn();
@@ -34,6 +42,17 @@ test("calls sign up api post with form values on submit", () => {
     password,
     passwordConfirmation,
   );
+});
+
+test("navigates to sign in path on sign in button click", async () => {
+  Object.defineProperty(window, "location", { value: { pathname: "/" } });
+
+  render(<SignUp />);
+
+  const signInButton = screen.getByText("Sign In");
+  fireEvent.click(signInButton);
+
+  await waitFor(() => expect(window.location.pathname).toBe("/sign-in"));
 });
 
 // TODO: test navigation to sign in view
