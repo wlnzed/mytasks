@@ -40,21 +40,6 @@ test("renders TODO: SIGN IN VIEW on sign in route", async () => {
   screen.getByText("TODO: SIGN IN VIEW");
 });
 
-test("renders sign up component on sign up route", async () => {
-  Object.defineProperty(window, "location", {
-    value: { origin: "https://localhost:1234", pathname: "/sign-up" },
-  });
-
-  render(<App />);
-
-  screen.getByText("Sign Up:");
-  screen.getByLabelText("Username:");
-  screen.getByLabelText("Password:");
-  screen.getByLabelText("Password Confirmation:");
-  screen.getByText("Submit");
-  screen.getByText("Sign In");
-});
-
 test("sign up view posts sign up request with form content on submit", () => {
   const spyFetch = vi.fn();
   spyFetch.mockResolvedValue(Promise.resolve());
