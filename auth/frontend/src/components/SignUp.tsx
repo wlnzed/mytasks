@@ -1,5 +1,6 @@
 import { useState } from "react";
 import signUpApi from "../api/signUp.ts";
+import routes from "../routes.ts";
 import styles from "./SignUp.module.css";
 
 const SignUp = () => {
@@ -63,7 +64,7 @@ const SignUp = () => {
         className={styles.signInButton}
         onClick={(e) => {
           e.preventDefault();
-          window.location.pathname = "/sign-in";
+          window.location.pathname = routes.signIn;
         }}
       >
         Sign In

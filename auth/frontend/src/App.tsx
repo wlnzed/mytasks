@@ -1,19 +1,20 @@
 import { useEffect } from "react";
-import SignUp from "./components/SignUp";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import styles from "./App.module.css";
 import Cookies from "js-cookie";
+import SignUp from "./components/SignUp";
+import routes from "./routes";
+import styles from "./App.module.css";
 
 const App = () => {
   useEffect(() => {
     if (
-      window.location.pathname !== "/sign-in" &&
-      window.location.pathname !== "/sign-up"
+      window.location.pathname !== routes.signIn &&
+      window.location.pathname !== routes.signUp
     ) {
       if (Cookies.get("user-email") === undefined) {
-        window.location.pathname = "/sign-in";
-      } else if (window.location.pathname !== "/home") {
-        window.location.pathname = "/home";
+        window.location.pathname = routes.signIn;
+      } else if (window.location.pathname !== routes.home) {
+        window.location.pathname = routes.home;
       }
     }
   }, []);
@@ -22,10 +23,10 @@ const App = () => {
     <div className={styles.app}>
       <Router>
         <Routes>
-          <Route path="/" element={<>TODO: SPINNER</>} />
-          <Route path="/home" element={<>TODO: SIGNED IN VIEW</>} />
-          <Route path="/sign-up" element={<SignUp />} />
-          <Route path="/sign-in" element={<>TODO: SIGN IN VIEW</>} />
+          <Route path={routes.init} element={<>TODO: SPINNER</>} />
+          <Route path={routes.home} element={<>TODO: HOME VIEW</>} />
+          <Route path={routes.signIn} element={<>TODO: SIGN IN VIEW</>} />
+          <Route path={routes.signUp} element={<SignUp />} />
         </Routes>
       </Router>
     </div>
