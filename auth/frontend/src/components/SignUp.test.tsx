@@ -44,6 +44,25 @@ test("calls sign up api post with form values on submit", () => {
   );
 });
 
+test("logs error message on post error", async () => {
+  console.log = vi.fn();
+  const errorMessage = "post error";
+  const spyPost = vi.fn();
+  spyPost.mockRejectedValue(errorMessage);
+  signUpApi.post = spyPost;
+
+  render(<SignUp />);
+
+  const submitButton = screen.getByText("Submit");
+  fireEvent.click(submitButton);
+
+  await waitFor(() =>
+    expect(console.log).toHaveBeenCalledWith(
+      "error while signing up: " + errorMessage,
+    ),
+  );
+});
+
 test("navigates to sign in path on sign in button click", async () => {
   Object.defineProperty(window, "location", { value: { pathname: "/" } });
 

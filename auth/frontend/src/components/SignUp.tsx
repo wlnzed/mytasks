@@ -12,7 +12,7 @@ const SignUp = () => {
     e.preventDefault();
 
     signUpApi.post(username, password, passwordConfirmation).catch((err) => {
-      console.log("error while signing up: ", err);
+      console.log("error while signing up: " + err);
     });
   };
 
