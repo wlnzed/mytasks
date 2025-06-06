@@ -1,7 +1,7 @@
 import { expect, test, vi } from "vitest";
 import signUpApi from "./signUp";
 
-test("makes post request with user details to the sign up endpoint", () => {
+test("makes post request with user details to the sign up endpoint", async () => {
   const username = "someuser";
   const password = "p@ssword";
   const passwordConfirmation = "p@asswordConfirmation";
@@ -10,7 +10,7 @@ test("makes post request with user details to the sign up endpoint", () => {
     `,"passwordConfirmation":"${passwordConfirmation}"}`;
   global.fetch = vi.fn();
 
-  signUpApi.post(username, password, passwordConfirmation);
+  await signUpApi.post(username, password, passwordConfirmation);
 
   expect(fetch).toHaveBeenCalledWith(
     import.meta.env.VITE_BACKEND_URL + "/sign-up",
@@ -20,4 +20,15 @@ test("makes post request with user details to the sign up endpoint", () => {
       headers: { "Content-Type": "application/json" },
     },
   );
+});
+
+test("returns response as-is from the fetch call", async () => {
+  const expectedResponse = "some response";
+  const spyFetch = vi.fn();
+  spyFetch.mockResolvedValue(Promise.resolve(expectedResponse));
+  global.fetch = spyFetch;
+
+  const actualResponse = await signUpApi.post("", "", "");
+
+  expect(actualResponse).toEqual(expectedResponse);
 });
