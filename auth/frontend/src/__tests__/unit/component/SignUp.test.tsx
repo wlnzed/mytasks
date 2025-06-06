@@ -6,8 +6,8 @@ import {
   cleanup,
   waitFor,
 } from "@testing-library/react";
-import SignUp from "./SignUp";
-import signUpApi from "../api/signUp";
+import SignUp from "../../../components/SignUp";
+import signUpApi from "../../../api/signUp";
 
 afterEach(cleanup);
 

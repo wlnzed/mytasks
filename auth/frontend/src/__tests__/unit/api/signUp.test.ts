@@ -1,5 +1,5 @@
 import { expect, test, vi } from "vitest";
-import signUpApi from "./signUp";
+import signUpApi from "../../../api/signUp";
 
 test("makes post request with user details to the sign up endpoint", async () => {
   const username = "someuser";

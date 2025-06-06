@@ -14,6 +14,7 @@ const App = () => {
       if (Cookies.get("user-email") === undefined) {
         window.location.pathname = routes.signIn;
       } else if (window.location.pathname !== routes.home) {
+        // TODO: validate cookie
         window.location.pathname = routes.home;
       }
     }

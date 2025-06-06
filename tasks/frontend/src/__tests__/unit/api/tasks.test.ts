@@ -1,5 +1,5 @@
 import { test, vi, expect } from "vitest";
-import tasksApi from "./tasks";
+import tasksApi from "../../../api/tasks";
 
 test("makes get request with credentials to the tasks endpoint", () => {
   global.fetch = vi.fn();

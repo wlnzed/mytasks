@@ -1,6 +1,6 @@
 import { afterEach, test } from "vitest";
 import { cleanup, render, screen } from "@testing-library/react";
-import Task from "./Task";
+import Task from "../../../components/Task";
 
 afterEach(cleanup);
 
