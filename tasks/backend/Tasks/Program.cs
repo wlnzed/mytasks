@@ -32,10 +32,14 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
+if (app.Environment.IsDevelopment() || app.Environment.IsEnvironment("Testing"))
+{
+    app.UseCors(localCorsPolicyName);
+}
+
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
-    app.UseCors(localCorsPolicyName);
 }
 
 app.UseHttpsRedirection();
