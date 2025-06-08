@@ -1,0 +1,16 @@
+{
+  "name": "e2e",
+  "version": "0.0.0",
+  "scripts": {
+    "open": "cypress open",
+    "test": "cypress run --e2e"
+  },
+  "dependencies": {
+    "cypress": "^14.4.1",
+    "cypress-vite": "^1.6.0",
+    "dotenv": "^16.5.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3"
+  }
+}
