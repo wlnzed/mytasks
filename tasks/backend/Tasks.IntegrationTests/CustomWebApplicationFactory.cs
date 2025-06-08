@@ -10,7 +10,7 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Program>
         {
             config.AddInMemoryCollection(new Dictionary<string, string?>
             {
-                {"DynamoDbTablePrefix", "test-"}
+                {"DynamoDbTablePrefix", "itest-"}
             });
         });
 
