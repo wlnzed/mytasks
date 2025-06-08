@@ -1,10 +1,13 @@
 {
   "compilerOptions": {
     "baseUrl": "./",
-    "target": "es5",
-    "lib": ["es5", "dom"],
+    "target": "es2020",
+    "lib": ["ES2020", "dom"],
     "sourceMap": true,
-    "types": ["cypress", "node"]
+    "types": ["cypress", "node"],
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "esModuleInterop": true
   },
-  "include": ["**/*.ts", "cypress.config.js"]
+  "include": ["**/*.ts"]
 }
