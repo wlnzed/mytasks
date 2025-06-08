@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Auth.Controllers;
 
 [ApiController]
-[Route("sign-up")]
+[Route("sign-in")]
 public class SignInController() : ControllerBase
 {
     [HttpPost]
