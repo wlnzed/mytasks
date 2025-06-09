@@ -20,16 +20,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: dotnet test
-        working-directory: ./auth/backend/Auth.IntegrationTests
+        working-directory: auth/backend/Auth.IntegrationTests
   utest:
     needs: setup
     runs-on: ubuntu-latest
     steps:
       - run: dotnet test
-        working-directory: ./auth/backend/Auth.UnitTests
+        working-directory: auth/backend/Auth.UnitTests
   build:
     needs: [itest, utest]
     runs-on: ubuntu-latest
     steps:
-      - run: dotnet build
-        working-directory: ./auth/backend/Auth
+      - run: dotnet publish
+        working-directory: auth/backend/Auth
+      - uses: actions/upload-artifact@v4
+        with:
+          name: auth-backend-bin
+          path: auth/backend/Auth/bin/Release/net9.0/publish
