@@ -1,0 +1,35 @@
+name: build auth backend
+run-name: build auth backend
+on:
+  push:
+    branches: [main]
+    paths: [auth/backend/**]
+permissions:
+  contents: read
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 9.0.x
+      - run: dotnet restore
+  itest:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - run: dotnet test
+        working-directory: ./auth/backend/Auth.IntegrationTests
+  utest:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - run: dotnet test
+        working-directory: ./auth/backend/Auth.UnitTests
+  build:
+    needs: [itest, utest]
+    runs-on: ubuntu-latest
+    steps:
+      - run: dotnet build
+        working-directory: ./auth/backend/Auth
