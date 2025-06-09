@@ -3,8 +3,6 @@ run-name: deploy shell to staging
 on:
   workflow_run:
     workflows: [build shell, provision staging infrastructure]
-    branches: [main]
-    paths: [shell/**]
 permissions:
   contents: read
 jobs:
