@@ -4,7 +4,7 @@ resource "aws_ecs_cluster" "mytasks" {
 
 resource "aws_ecs_task_definition" "mytasks_auth" {
   family                   = "mytasks-auth"
-  container_definitions    = templatefile("auth_task_definition.json", {})
+  container_definitions    = templatefile("task_definition.json", { app_name = "auth" })
   requires_compatibilities = ["EC2"]
 }
 
@@ -18,7 +18,7 @@ resource "aws_ecs_service" "mytasks_auth" {
 
 resource "aws_ecs_task_definition" "mytasks_tasks" {
   family                   = "mytasks-tasks"
-  container_definitions    = templatefile("tasks_task_definition.json", {})
+  container_definitions    = templatefile("task_definition.json", { app_name = "tasks" })
   requires_compatibilities = ["EC2"]
 }
 
