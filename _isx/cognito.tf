@@ -1,5 +1,5 @@
 resource "aws_cognito_user_pool" "mytasks" {
-  name                = "mytasks"
+  name                = "${var.ENV}-mytasks"
   username_attributes = ["email"]
 
   username_configuration {

@@ -1,13 +1,13 @@
 [
   {
-    "name": "mytasks-${app_name}",
+    "name": "${prefix}-mytasks-${app_name}",
     "image": "dotnet",
     "cpu": 256,
     "memory": 256,
     "logConfiguration": {
       "logDriver": "awslogs",
       "options": {
-        "awslogs-group": "mytasks-${app_name}-backend",
+        "awslogs-group": "${prefix}-mytasks-${app_name}-backend",
         "awslogs-create-group": "true",
         "awslogs-region": "us-east-1",
         "awslogs-stream-prefix": "ecs"

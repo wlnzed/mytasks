@@ -1,11 +1,11 @@
 resource "aws_s3_bucket" "mytasks_shell" {
-  bucket = "mytasks-shell"
+  bucket = "${var.ENV}-mytasks-shell"
 }
 
 resource "aws_s3_bucket" "mytasks_auth" {
-  bucket = "mytasks-auth"
+  bucket = "${var.ENV}-mytasks-auth"
 }
 
 resource "aws_s3_bucket" "mytasks_tasks" {
-  bucket = "mytasks-tasks"
+  bucket = "${var.ENV}-mytasks-tasks"
 }
