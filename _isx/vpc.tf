@@ -8,9 +8,8 @@ resource "aws_subnet" "mytasks_private" {
 }
 
 resource "aws_subnet" "mytasks_public" {
-  vpc_id     = aws_vpc.mytasks.id
-  cidr_block = "10.0.2.0/24"
-  # TODO: check if actually necessary
+  vpc_id                  = aws_vpc.mytasks.id
+  cidr_block              = "10.0.2.0/24"
   map_public_ip_on_launch = true
 }
 
