@@ -14,23 +14,43 @@ defaults:
   run:
     working-directory: ./_isx
 jobs:
-  provision-staging-infrastructure:
+  stg:
+    name: Provision Staging Infrastructure
     env:
       ENV: stg
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: hashicorp/setup-terraform@v3
-      - run: terraform init -input=false
-      - run: terraform plan -input=false
-      - run: terraform apply -auto-approve -input=false
-  provision-production-infrastructure:
+      - name: Check Out Repository
+        uses: actions/checkout@v4
+
+      - name: Set Up Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Initialize Terraform Files
+        run: terraform init -input=false
+
+      - name: Plan Infrastructure
+        run: terraform plan -input=false
+
+      - name: Provision Infrastructure
+        run: terraform apply -auto-approve -input=false
+  prod:
+    name: Provision Production Infrastructure
     env:
       ENV: prod
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: hashicorp/setup-terraform@v3
-      - run: terraform init
-      - run: terraform plan -input=false
-      - run: terraform apply -auto-approve -input=false
+      - name: Check Out Repository
+        uses: actions/checkout@v4
+
+      - name: Set Up Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Initialize Terraform Files
+        run: terraform init -input=false
+
+      - name: Plan Infrastructure
+        run: terraform plan -input=false
+
+      - name: Provision Infrastructure
+        run: terraform apply -auto-approve -input=false
