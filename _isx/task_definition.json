@@ -7,7 +7,7 @@
     "logConfiguration": {
       "logDriver": "awslogs",
       "options": {
-        "awslogs-group": "${prefix}-mytasks-${app_name}-backend",
+        "awslogs-group": "${prefix}-mytasks-${app_name}-microservice",
         "awslogs-create-group": "true",
         "awslogs-region": "us-east-1",
         "awslogs-stream-prefix": "ecs"

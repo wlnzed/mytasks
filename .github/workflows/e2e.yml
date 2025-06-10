@@ -32,64 +32,64 @@ jobs:
           run-id: ${{ steps.shell-workflow-run.outputs.run-id }}
           job-name: deploy-stg
 
-      - name: Get Auth Backend Run Reference
+      - name: Get Auth Microservice Run Reference
         uses: beacon-biosignals/get-workflow-run@v1
-        id: auth-backend-workflow-run
+        id: auth-microservice-workflow-run
         with:
-          workflow-file: auth-backend.yml
+          workflow-file: auth-microservice.yml
           # TODO: check if below works - pasted from example: commit-sha: ${{ github.event.pull_request.head.sha }}
           commit-sha: ${{ github.event.push.head.sha }}
 
-      - name: Wait for Auth Backend Deployment to Staging Environment
+      - name: Wait for Auth Microservice Deployment to Staging Environment
         uses: beacon-biosignals/wait-for-job@v1
-        id: wait-for-auth-backend
+        id: wait-for-auth-microservice
         with:
-          run-id: ${{ steps.auth-backend-workflow-run.outputs.run-id }}
+          run-id: ${{ steps.auth-microservice-workflow-run.outputs.run-id }}
           job-name: deploy-stg
 
-      - name: Get Auth Frontend Run Reference
+      - name: Get Auth Microfrontend Run Reference
         uses: beacon-biosignals/get-workflow-run@v1
-        id: auth-frontend-workflow-run
+        id: auth-microfrontend-workflow-run
         with:
-          workflow-file: auth-frontend.yml
+          workflow-file: auth-microfrontend.yml
           # TODO: check if below works - pasted from example: commit-sha: ${{ github.event.pull_request.head.sha }}
           commit-sha: ${{ github.event.push.head.sha }}
 
-      - name: Wait for Auth Frontend Deployment to Staging Environment
+      - name: Wait for Auth Microfrontend Deployment to Staging Environment
         uses: beacon-biosignals/wait-for-job@v1
-        id: wait-for-auth-frontend
+        id: wait-for-auth-microfrontend
         with:
-          run-id: ${{ steps.auth-frontend-workflow-run.outputs.run-id }}
+          run-id: ${{ steps.auth-microfrontend-workflow-run.outputs.run-id }}
           job-name: deploy-stg
 
-      - name: Get Tasks Backend Run Reference
+      - name: Get Tasks Microservice Run Reference
         uses: beacon-biosignals/get-workflow-run@v1
-        id: tasks-backend-workflow-run
+        id: tasks-microservice-workflow-run
         with:
-          workflow-file: tasks-backend.yml
+          workflow-file: tasks-microservice.yml
           # TODO: check if below works - pasted from example: commit-sha: ${{ github.event.pull_request.head.sha }}
           commit-sha: ${{ github.event.push.head.sha }}
 
-      - name: Wait for Tasks Backend Deployment to Staging Environment
+      - name: Wait for Tasks Microservice Deployment to Staging Environment
         uses: beacon-biosignals/wait-for-job@v1
-        id: wait-for-tasks-backend
+        id: wait-for-tasks-microservice
         with:
-          run-id: ${{ steps.tass-backend-workflow-run.outputs.run-id }}
+          run-id: ${{ steps.tass-microservice-workflow-run.outputs.run-id }}
           job-name: deploy-stg
 
-      - name: Get Tasks Frontend Run Reference
+      - name: Get Tasks Microfrontend Run Reference
         uses: beacon-biosignals/get-workflow-run@v1
-        id: tasks-frontend-workflow-run
+        id: tasks-microfrontend-workflow-run
         with:
-          workflow-file: tasks-frontend.yml
+          workflow-file: tasks-microfrontend.yml
           # TODO: check if below works - pasted from example: commit-sha: ${{ github.event.pull_request.head.sha }}
           commit-sha: ${{ github.event.push.head.sha }}
 
-      - name: Wait for Tasks Frontend Deployment to Staging Environment
+      - name: Wait for Tasks Microfrontend Deployment to Staging Environment
         uses: beacon-biosignals/wait-for-job@v1
-        id: wait-for-tasks-frontend
+        id: wait-for-tasks-microfrontend
         with:
-          run-id: ${{ steps.tasks-frontend-workflow-run.outputs.run-id }}
+          run-id: ${{ steps.tasks-microfrontend-workflow-run.outputs.run-id }}
           job-name: deploy-stg
 
       - name: Run

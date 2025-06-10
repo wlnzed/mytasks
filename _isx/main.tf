@@ -16,8 +16,7 @@ terraform {
 }
 
 provider "aws" {
-  region = "eu-west-2"
-  # TODO: replace with access and secret key for pipeline operations
+  region  = "eu-west-2"
   profile = "default"
 }
 
