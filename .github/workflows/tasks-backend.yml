@@ -39,20 +39,19 @@ jobs:
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
     steps:
-      # artifact-path: auth/backend/Auth/bin/Release/net9.0/publish
-      - name: Get Workflow Run Reference
+      - name: Get Infrastructure Workflow Run Reference
         uses: beacon-biosignals/get-workflow-run@v1
-        id: workflow-run
+        id: infrastructure-workflow-run
         with:
-          workflow-file: infrastructure.yaml
+          workflow-file: infrastructure.yml
           # TODO: check if below works - pasted from example: commit-sha: ${{ github.event.pull_request.head.sha }}
           commit-sha: ${{ github.event.push.head.sha }}
 
       - name: Wait for Staging Infrastructure Provisioning
         uses: beacon-biosignals/wait-for-job@v1
-        id: wait-for-job
+        id: wait-for-infrastructure
         with:
-          run-id: ${{ steps.workfow-run.outputs.run-id }}
+          run-id: ${{ steps.infrastructure-workfow-run.outputs.run-id }}
           job-name: stg
 
       - name: Login to Amazon ECR
@@ -77,20 +76,19 @@ jobs:
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
     steps:
-      # artifact-path: auth/backend/Auth/bin/Release/net9.0/publish
-      - name: Get Workflow Run Reference
+      - name: Get Infrastructure Workflow Run Reference
         uses: beacon-biosignals/get-workflow-run@v1
-        id: workflow-run
+        id: infrastructure-workflow-run
         with:
-          workflow-file: infrastructure.yaml
+          workflow-file: infrastructure.yml
           # TODO: check if below works - pasted from example: commit-sha: ${{ github.event.pull_request.head.sha }}
           commit-sha: ${{ github.event.push.head.sha }}
 
       - name: Wait for Production Infrastructure Provisioning
         uses: beacon-biosignals/wait-for-job@v1
-        id: wait-for-job
+        id: wait-for-infrastructure
         with:
-          run-id: ${{ steps.workfow-run.outputs.run-id }}
+          run-id: ${{ steps.infrastructure-workfow-run.outputs.run-id }}
           job-name: prod
 
       - name: Login to Amazon ECR
