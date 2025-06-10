@@ -1,0 +1,98 @@
+name: Run End-to-End Tests
+run-name: Run End-to-End Tests
+on:
+  push:
+    branches: [main]
+    paths: [shell, auth, tasks, e2e]
+permissions:
+  contents: read
+defaults:
+  run:
+    working-directory: e2e
+jobs:
+  run:
+    name: Run
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Out Repository
+        uses: actions/checkout@v4
+
+      - name: Get Frontend Shell Run Reference
+        uses: beacon-biosignals/get-workflow-run@v1
+        id: shell-workflow-run
+        with:
+          workflow-file: shell.yml
+          # TODO: check if below works - pasted from example: commit-sha: ${{ github.event.pull_request.head.sha }}
+          commit-sha: ${{ github.event.push.head.sha }}
+
+      - name: Wait for Frontend Shell Deployment to Staging Environment
+        uses: beacon-biosignals/wait-for-job@v1
+        id: wait-for-infrastructure
+        with:
+          run-id: ${{ steps.infrastructure-workfow-run.outputs.run-id }}
+          job-name: deploy-stg
+
+      - name: Get Auth Backend Run Reference
+        uses: beacon-biosignals/get-workflow-run@v1
+        id: auth-backend-workflow-run
+        with:
+          workflow-file: auth-backend.yml
+          # TODO: check if below works - pasted from example: commit-sha: ${{ github.event.pull_request.head.sha }}
+          commit-sha: ${{ github.event.push.head.sha }}
+
+      - name: Wait for Auth Backend Deployment to Staging Environment
+        uses: beacon-biosignals/wait-for-job@v1
+        id: wait-for-auth-backend
+        with:
+          run-id: ${{ steps.infrastructure-workfow-run.outputs.run-id }}
+          job-name: deploy-stg
+
+      - name: Get Auth Frontend Run Reference
+        uses: beacon-biosignals/get-workflow-run@v1
+        id: auth-frontend-workflow-run
+        with:
+          workflow-file: auth-frontend.yml
+          # TODO: check if below works - pasted from example: commit-sha: ${{ github.event.pull_request.head.sha }}
+          commit-sha: ${{ github.event.push.head.sha }}
+
+      - name: Wait for Auth Frontend Deployment to Staging Environment
+        uses: beacon-biosignals/wait-for-job@v1
+        id: wait-for-auth-frontend
+        with:
+          run-id: ${{ steps.infrastructure-workfow-run.outputs.run-id }}
+          job-name: deploy-stg
+
+      - name: Get Tasks Backend Run Reference
+        uses: beacon-biosignals/get-workflow-run@v1
+        id: tasks-backend-workflow-run
+        with:
+          workflow-file: tasks-backend.yml
+          # TODO: check if below works - pasted from example: commit-sha: ${{ github.event.pull_request.head.sha }}
+          commit-sha: ${{ github.event.push.head.sha }}
+
+      - name: Wait for Tasks Backend Deployment to Staging Environment
+        uses: beacon-biosignals/wait-for-job@v1
+        id: wait-for-tasks-backend
+        with:
+          run-id: ${{ steps.infrastructure-workfow-run.outputs.run-id }}
+          job-name: deploy-stg
+
+      - name: Get Tasks Frontend Run Reference
+        uses: beacon-biosignals/get-workflow-run@v1
+        id: tasks-frontend-workflow-run
+        with:
+          workflow-file: tasks-frontend.yml
+          # TODO: check if below works - pasted from example: commit-sha: ${{ github.event.pull_request.head.sha }}
+          commit-sha: ${{ github.event.push.head.sha }}
+
+      - name: Wait for Tasks Frontend Deployment to Staging Environment
+        uses: beacon-biosignals/wait-for-job@v1
+        id: wait-for-tasks-frontend
+        with:
+          run-id: ${{ steps.infrastructure-workfow-run.outputs.run-id }}
+          job-name: deploy-stg
+
+      - name: Run
+        uses: cypress-io/github-action@v6
+        with:
+          browser: chrome
