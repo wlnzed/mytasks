@@ -10,4 +10,5 @@ public class SignUpController() : ControllerBase
     public void Post([FromBody] SignUpRequest request) { }
 }
 
-public record SignUpRequest(string Username, string Password, string PasswordConfirmation);
+public record SignUpRequest(
+    string Username, string Password, string PasswordConfirmation);

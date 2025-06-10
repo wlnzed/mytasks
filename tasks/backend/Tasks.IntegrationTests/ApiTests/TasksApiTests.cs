@@ -24,7 +24,7 @@ public class TasksApiTests
     [Fact]
     public async Task GivenUserWithNoTasksInDatabase_WhenGetTasks_ThenNoTasks()
     {
-        var expectedResponseContent = "[]";
+        var expectedContent = "[]";
 
         var request = new HttpRequestMessage(HttpMethod.Get, path);
         request.Headers.Add("Cookie", "user-email=new@user.com;");
@@ -32,14 +32,14 @@ public class TasksApiTests
 
         response.EnsureSuccessStatusCode();
         Assert.Equal(
-            expectedResponseContent,
+            expectedContent,
             await response.Content.ReadAsStringAsync());
     }
 
     [Fact]
     public async Task GivenUserWithTasksInDatabase_WhenGetTasks_ThenTasksForTheUser()
     {
-        var expectedResponseContent = "[{\"ownerEmail\":\"integration@tests.c" +
+        var expectedContent = "[{\"ownerEmail\":\"integration@tests.c" +
             "om\",\"id\":\"7a128cce-ac34-4da0-a797-19aabb8f57a8\",\"title\":" +
             "\"Task #1\",\"description\":\"Do something\",\"isDone\":false,\"" +
             "subtasks\":[{\"id\":\"cfa90295-a1aa-47e6-b068-2fd46b996283\",\"t" +
@@ -55,8 +55,6 @@ public class TasksApiTests
         var response = await _client.SendAsync(request);
 
         response.EnsureSuccessStatusCode();
-        Assert.Equal(
-            expectedResponseContent,
-            await response.Content.ReadAsStringAsync());
+        Assert.Equal(expectedContent, await response.Content.ReadAsStringAsync());
     }
 }

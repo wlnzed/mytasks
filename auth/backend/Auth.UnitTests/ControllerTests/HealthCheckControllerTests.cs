@@ -7,9 +7,9 @@ public class HealthCheckControllerTests
     [Fact]
     public void WhenGetHealthCheck_ThenHealthyMessage()
     {
-        const string expectedResponse = "Auth backend is up and running.";
+        const string expectedResult = "Auth backend is up and running.";
         var sut = new HealthCheckController();
-        var actualResponse = sut.Get();
-        Assert.Equal(expectedResponse, actualResponse);
+        var result = sut.Get();
+        Assert.Equal(expectedResult, result);
     }
 }
