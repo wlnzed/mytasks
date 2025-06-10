@@ -19,10 +19,10 @@ builder.Services.AddScoped<IDynamoDBContext>((provider) =>
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
-var localCorsPolicyName = "localdev";
+const string corsPolicyName = "tasks-backend-cors policy";
 
 builder.Services.AddCors(options =>
-    options.AddPolicy(localCorsPolicyName, policy =>
+    options.AddPolicy(corsPolicyName, policy =>
         policy.WithOrigins(
             builder.Configuration.GetValue<string>("FrontendShellUrl")!,
             builder.Configuration.GetValue<string>("TasksMfeUrl")!
@@ -32,15 +32,9 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment() || app.Environment.IsEnvironment("Testing"))
-{
-    app.UseCors(localCorsPolicyName);
-}
+if (app.Environment.IsDevelopment()) app.MapOpenApi();
 
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-}
+app.UseCors(corsPolicyName);
 
 app.UseHttpsRedirection();
 

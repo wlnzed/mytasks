@@ -3,10 +3,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
-var localCorsPolicyName = "localdev";
+const string corsPolicyName = "auth-backend-cors-policy";
 
 builder.Services.AddCors(options =>
-    options.AddPolicy(localCorsPolicyName, policy =>
+    options.AddPolicy(corsPolicyName, policy =>
         policy.WithOrigins(
             builder.Configuration.GetValue<string>("FrontendShellUrl")!,
             builder.Configuration.GetValue<string>("AuthMfeUrl")!
@@ -17,11 +17,9 @@ builder.Services.AddCors(options =>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-    app.UseCors(localCorsPolicyName);
-}
+if (app.Environment.IsDevelopment()) app.MapOpenApi();
+
+app.UseCors(corsPolicyName);
 
 app.UseHttpsRedirection();
 
