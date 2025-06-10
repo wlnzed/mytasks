@@ -1,0 +1,48 @@
+name: build shell
+run-name: build shell
+on:
+  push:
+    branches: [main]
+    paths: [shell/**]
+permissions:
+  contents: read
+defaults:
+  run:
+    working-directory: ./shell
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+  deploy-to-staging-environment:
+    needs: build
+    runs-on: ubuntu-latest
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: beacon-biosignals/get-workflow-run@v1
+        id: workflow-run
+        with:
+          workflow-file: infrastructure.yaml
+          # TODO: check if below works - pasted from example: commit-sha: ${{ github.event.pull_request.head.sha }}
+          commit-sha: ${{ github.event.push.head.sha }}
+      - uses: beacon-biosignals/wait-for-job@v1
+        id: wait-for-job
+        with:
+          run-id: ${{ steps.workfow-run.outputs.run-id }}
+          job-name: provision-staging-infrastructure
+      - uses: lbertenasco/s3-deploy@v1
+        with:
+          folder: dist
+          bucket: ${{ secrets.S3_BUCKET_STAGING }}
+          dist-id: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID_STAGING }}
+          invalidation: / *
