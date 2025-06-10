@@ -1,5 +1,5 @@
-name: provision infrastructure
-run-name: provision infrastructure
+name: Provision Infrastructure
+run-name: Provision Infrastructure
 on:
   push:
     branches: [main]
@@ -12,7 +12,7 @@ env:
   AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
 defaults:
   run:
-    working-directory: ./_isx
+    working-directory: _isx
 jobs:
   stg:
     name: Provision Staging Infrastructure

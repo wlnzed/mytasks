@@ -1,5 +1,5 @@
-name: build auth backend
-run-name: build auth backend
+name: Build and Deploy Auth Backend
+run-name: Build and Deploy Auth Backend
 on:
   push:
     branches: [main]
