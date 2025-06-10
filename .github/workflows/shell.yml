@@ -53,12 +53,46 @@ jobs:
         id: wait-for-job
         with:
           run-id: ${{ steps.workfow-run.outputs.run-id }}
-          job-name: provision-staging-infrastructure
+          job-name: stg
 
       - name: Deploy
         uses: lbertenasco/s3-deploy@v1
         with:
           folder: dist
-          bucket: ${{ secrets.S3_BUCKET_STAGING }}
+          bucket: stg-mytasks-shell
           dist-id: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID_STAGING }}
+          invalidation: / *
+  deploy-prod:
+    name: Deploy to Production Environment
+    needs: build
+    runs-on: ubuntu-latest
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+    steps:
+      - name: Check Out Repository
+        uses: actions/checkout@v4
+
+      - name: Get Workflow Run Reference
+        uses: beacon-biosignals/get-workflow-run@v1
+        id: workflow-run
+        with:
+          workflow-file: infrastructure.yaml
+          # TODO: check if below works - pasted from example: commit-sha: ${{ github.event.pull_request.head.sha }}
+          commit-sha: ${{ github.event.push.head.sha }}
+
+      - name: Wait for Production Infrastructure Provisioning
+        uses: beacon-biosignals/wait-for-job@v1
+        id: wait-for-job
+        with:
+          run-id: ${{ steps.workfow-run.outputs.run-id }}
+          job-name: prod
+
+      - name: Deploy
+        uses: lbertenasco/s3-deploy@v1
+        with:
+          folder: dist
+          bucket: prod-mytasks-shell
+          dist-id: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID_PRODUCTION }}
           invalidation: / *
