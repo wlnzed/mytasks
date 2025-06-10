@@ -16,8 +16,6 @@ defaults:
 jobs:
   stg:
     name: Provision Staging Infrastructure
-    env:
-      ENV: stg
     runs-on: ubuntu-latest
     steps:
       - name: Check Out Repository
@@ -33,11 +31,9 @@ jobs:
         run: terraform plan -input=false
 
       - name: Provision Infrastructure
-        run: terraform apply -auto-approve -input=false
+        run: terraform apply -auto-approve -input=false -var="ENV=stg"
   prod:
     name: Provision Production Infrastructure
-    env:
-      ENV: prod
     runs-on: ubuntu-latest
     steps:
       - name: Check Out Repository
@@ -53,4 +49,4 @@ jobs:
         run: terraform plan -input=false
 
       - name: Provision Infrastructure
-        run: terraform apply -auto-approve -input=false
+        run: terraform apply -auto-approve -input=false -var="ENV=prod"
