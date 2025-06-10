@@ -55,7 +55,7 @@ jobs:
         uses: beacon-biosignals/wait-for-job@v1
         id: wait-for-infrastructure
         with:
-          run-id: ${{ steps.infrastructure-workfow-run.outputs.run-id }}
+          run-id: ${{ steps.infrastructure-workflow-run.outputs.run-id }}
           job-name: stg
 
       - name: Deploy
@@ -77,6 +77,21 @@ jobs:
       - name: Check Out Repository
         uses: actions/checkout@v4
 
+      - name: Get End-to-End Tests Workflow Run Reference
+        uses: beacon-biosignals/get-workflow-run@v1
+        id: e2e-workflow-run
+        with:
+          workflow-file: e2e.yml
+          # TODO: check if below works - pasted from example: commit-sha: ${{ github.event.pull_request.head.sha }}
+          commit-sha: ${{ github.event.push.head.sha }}
+
+      - name: Wait for End-to-End Tests to Run
+        uses: beacon-biosignals/wait-for-job@v1
+        id: wait-for-e2e
+        with:
+          run-id: ${{ steps.e2e-workflow-run.outputs.run-id }}
+          job-name: run
+
       - name: Get Infrastructure Workflow Run Reference
         uses: beacon-biosignals/get-workflow-run@v1
         id: infrastructure-workflow-run
@@ -89,7 +104,7 @@ jobs:
         uses: beacon-biosignals/wait-for-job@v1
         id: wait-for-infrastructure
         with:
-          run-id: ${{ steps.infrastructure-workfow-run.outputs.run-id }}
+          run-id: ${{ steps.infrastructure-workflow-run.outputs.run-id }}
           job-name: prod
 
       - name: Deploy

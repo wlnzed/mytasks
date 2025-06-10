@@ -29,7 +29,7 @@ jobs:
         uses: beacon-biosignals/wait-for-job@v1
         id: wait-for-infrastructure
         with:
-          run-id: ${{ steps.infrastructure-workfow-run.outputs.run-id }}
+          run-id: ${{ steps.shell-workflow-run.outputs.run-id }}
           job-name: deploy-stg
 
       - name: Get Auth Backend Run Reference
@@ -44,7 +44,7 @@ jobs:
         uses: beacon-biosignals/wait-for-job@v1
         id: wait-for-auth-backend
         with:
-          run-id: ${{ steps.infrastructure-workfow-run.outputs.run-id }}
+          run-id: ${{ steps.auth-backend-workflow-run.outputs.run-id }}
           job-name: deploy-stg
 
       - name: Get Auth Frontend Run Reference
@@ -59,7 +59,7 @@ jobs:
         uses: beacon-biosignals/wait-for-job@v1
         id: wait-for-auth-frontend
         with:
-          run-id: ${{ steps.infrastructure-workfow-run.outputs.run-id }}
+          run-id: ${{ steps.auth-frontend-workflow-run.outputs.run-id }}
           job-name: deploy-stg
 
       - name: Get Tasks Backend Run Reference
@@ -74,7 +74,7 @@ jobs:
         uses: beacon-biosignals/wait-for-job@v1
         id: wait-for-tasks-backend
         with:
-          run-id: ${{ steps.infrastructure-workfow-run.outputs.run-id }}
+          run-id: ${{ steps.tass-backend-workflow-run.outputs.run-id }}
           job-name: deploy-stg
 
       - name: Get Tasks Frontend Run Reference
@@ -89,7 +89,7 @@ jobs:
         uses: beacon-biosignals/wait-for-job@v1
         id: wait-for-tasks-frontend
         with:
-          run-id: ${{ steps.infrastructure-workfow-run.outputs.run-id }}
+          run-id: ${{ steps.tasks-frontend-workflow-run.outputs.run-id }}
           job-name: deploy-stg
 
       - name: Run
