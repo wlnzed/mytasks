@@ -31,7 +31,8 @@ jobs:
         run: terraform plan -input=false
 
       - name: Provision Infrastructure
-        run: terraform apply -auto-approve -input=false -var="ENV=stg"
+        run: terraform apply -auto-approve -input=false \
+          -var="ENV=stg" -var "TEST_EMAIL=${{ secrets.TEST_EMAIL }}"
   prod:
     name: Provision Production Infrastructure
     runs-on: ubuntu-latest

@@ -23,3 +23,7 @@ provider "aws" {
 variable "ENV" {
   type = string
 }
+
+variable "TEST_EMAIL" {
+  type = string
+}
