@@ -33,7 +33,9 @@ shell-build:
     - npm run build
 
 shell-stg:
-  image: amazon/aws-cli:2.27.33
+  image:
+    name: amazon/aws-cli:2.27.33
+    entrypoint: [""]
   needs:
     - shell-build
     - isx-stg
