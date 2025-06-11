@@ -84,6 +84,7 @@ auth-msvc-build:
 auth-msvc-stg:
   image: docker:28.2.2:cli
   needs:
+    - ecr-pwd
     - auth-msvc-build
     - isx-stg
   dependencies:
@@ -98,6 +99,7 @@ auth-msvc-stg:
 auth-msvc-prod:
   image: docker:28.2.2:cli
   needs:
+    - ecr-pwd
     - auth-msvc-build
     - e2e
     - isx-prod
@@ -162,6 +164,7 @@ tasks-msvc-build:
 tasks-msvc-stg:
   image: docker:28.2.2:cli
   needs:
+    - ecr-pwd
     - tasks-msvc-build
     - isx-stg
   dependencies:
@@ -176,6 +179,7 @@ tasks-msvc-stg:
 tasks-msvc-prod:
   image: docker:28.2.2:cli
   needs:
+    - ecr-pwd
     - tasks-msvc-build
     - e2e
     - isx-prod
