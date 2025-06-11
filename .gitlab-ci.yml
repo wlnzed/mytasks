@@ -42,4 +42,4 @@ shell-stg:
   dependencies:
     - shell-build
   script:
-    - aws s3 sync shell/dist s3//stg-mytasks-shell/ --delete
+    - aws s3 sync --delete shell/dist s3://stg-mytasks-shell
