@@ -51,6 +51,7 @@ shell-prod:
     name: amazon/aws-cli:2.27.33
     entrypoint: [""]
   needs:
+    - shell-build
     - e2e
     - isx-prod
   dependencies:
@@ -89,6 +90,7 @@ auth-msvc-prod:
     name: amazon/aws-cli:2.27.33
     entrypoint: [""]
   needs:
+    - auth-msvc-build
     - e2e
     - isx-prod
   dependencies:
@@ -127,6 +129,7 @@ auth-mfe-prod:
     name: amazon/aws-cli:2.27.33
     entrypoint: [""]
   needs:
+    - auth-mfe-build
     - e2e
     - isx-prod
   dependencies:
@@ -165,6 +168,7 @@ tasks-msvc-prod:
     name: amazon/aws-cli:2.27.33
     entrypoint: [""]
   needs:
+    - tasks-msvc-build
     - e2e
     - isx-prod
   dependencies:
@@ -202,6 +206,7 @@ tasks-mfe-prod:
     name: amazon/aws-cli:2.27.33
     entrypoint: [""]
   needs:
+    - tasks-mfe-build
     - e2e
     - isx-prod
   dependencies:
