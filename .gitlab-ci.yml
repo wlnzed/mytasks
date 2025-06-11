@@ -1,4 +1,4 @@
-.isx-stg:
+isx-stg:
   image: hashicorp/terraform:latest
   script:
     - terraform init
