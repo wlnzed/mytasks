@@ -2,6 +2,7 @@
 
 namespace Tasks.IntegrationTests.ApiTests;
 
+[Collection("TestTable")]
 public class TasksApiTests
 {
     private const string path = "/tasks";
