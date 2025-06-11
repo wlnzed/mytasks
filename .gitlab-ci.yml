@@ -91,6 +91,7 @@ auth-msvc-stg:
     - ecr-pwd
     - auth-msvc-build
   script:
+    - unset DOCKER_HOST
     - cat ecr-pwd.txt | docker login --username AWS --password-stdin
       ${AWS_ACCOUNT_ID}.dkr.ecr.eu-west-2.amazonaws.com
     - docker build -t stg-mytasks/mytasks-auth Auth
@@ -107,6 +108,7 @@ auth-msvc-prod:
     - ecr-pwd
     - auth-msvc-build
   script:
+    - unset DOCKER_HOST
     - cat ecr-pwd.txt | docker login --username AWS --password-stdin
       ${AWS_ACCOUNT_ID}.dkr.ecr.eu-west-2.amazonaws.com
     - docker build -t prod-mytasks/mytasks-auth Auth
@@ -171,6 +173,7 @@ tasks-msvc-stg:
     - ecr-pwd
     - tasks-msvc-build
   script:
+    - unset DOCKER_HOST
     - cat ecr-pwd.txt | docker login --username AWS --password-stdin
       ${AWS_ACCOUNT_ID}.dkr.ecr.eu-west-2.amazonaws.com
     - docker build -t stg-mytasks/mytasks-tasks Tasks
@@ -187,6 +190,7 @@ tasks-msvc-prod:
     - ecr-pwd
     - tasks-msvc-build
   script:
+    - unset DOCKER_HOST
     - cat ecr-pwd.txt | docker login --username AWS --password-stdin
       ${AWS_ACCOUNT_ID}.dkr.ecr.eu-west-2.amazonaws.com
     - docker build -t prod-mytasks/mytasks-tasks Tasks
