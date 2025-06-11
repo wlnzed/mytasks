@@ -9,8 +9,8 @@ isx-stg:
       -var="AWS_ACCESS_KEY=${AWS_ACCESS_KEY}" -var="AWS_SECRET_KEY=${AWS_SECRET_KEY}"
     - terraform apply -auto-approve -var "TEST_EMAIL=${TEST_EMAIL}"
       -var="AWS_ACCESS_KEY=${AWS_ACCESS_KEY}" -var="AWS_SECRET_KEY=${AWS_SECRET_KEY}"
-    - terraform apply -auto-approve -var="AWS_ACCESS_KEY=${AWS_ACCESS_KEY}"
-      -var="AWS_SECRET_KEY=${AWS_SECRET_KEY}"
+    - terraform apply -auto-approve -var="TEST_EMAIL=${TEST_EMAIL}"
+      -var="AWS_ACCESS_KEY=${AWS_ACCESS_KEY}" -var="AWS_SECRET_KEY=${AWS_SECRET_KEY}"
 
 isx-prod:
   image:
@@ -65,9 +65,11 @@ auth-msvc-build:
     paths:
       - auth/microservice/dist
   script:
-    - cd auth/microservice
-    - dotnet test --project Auth.UnitTests
-    - dotnet test --project Auth.IntegrationTests
+    - cd auth/microservice/Auth.UnitTests
+    - dotnet test
+    - cd ../Auth.IntegrationTests
+    - dotnet test
+    - cd ..
     - dotnet publish -o dist Auth
 
 auth-msvc-stg:
@@ -143,9 +145,11 @@ tasks-msvc-build:
     paths:
       - tasks/microservice/dist
   script:
-    - cd tasks/microservice
-    - dotnet test --project Tasks.UnitTests
-    - dotnet test --project Tasks.IntegrationTests
+    - cd tasks/microservice/Tasks.UnitTests
+    - dotnet test
+    - cd ../Tasks.IntegrationTests
+    - dotnet test
+    - cd ..
     - dotnet publish -o dist Tasks
 
 tasks-msvc-stg:
