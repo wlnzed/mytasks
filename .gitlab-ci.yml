@@ -60,7 +60,7 @@ shell-prod:
     - aws s3 sync --delete shell/dist s3://prod-mytasks-shell
 
 auth-msvc-build:
-  image: dotnet/sdk:9.0
+  image: mcr.microsoft.com/dotnet/sdk:9.0
   artifacts:
     paths:
       - auth/microservice/dist
@@ -138,7 +138,7 @@ auth-mfe-prod:
     - aws s3 sync --delete auth/microfrontend/dist s3://prod-mytasks-auth
 
 tasks-msvc-build:
-  image: dotnet/sdk:9.0
+  image: mcr.microsoft.com/dotnet/sdk:9.0
   artifacts:
     paths:
       - tasks/microservice/dist
