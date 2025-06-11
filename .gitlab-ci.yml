@@ -1,5 +1,5 @@
 .init_tf:
-  script:
+  before_script:
     - cd _isx
     - wget https://releases.hashicorp.com/terraform/1.12.2/terraform_1.12.2_linux_amd64.zip
     - unzip terraform_1.12.2_linux_amd64.zip
