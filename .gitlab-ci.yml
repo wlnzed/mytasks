@@ -1,0 +1,3 @@
+isx-stg:
+  script:
+    - terraform --help
