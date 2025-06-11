@@ -25,5 +25,6 @@ variable "ENV" {
 }
 
 variable "TEST_EMAIL" {
-  type = string
+  default = ""
+  type    = string
 }
