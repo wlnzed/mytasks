@@ -82,7 +82,7 @@ auth-msvc-build:
     - dotnet publish -o dist Auth
 
 auth-msvc-stg:
-  image: docker:28.2.2-cli
+  image: docker:28.2.2-dind
   needs:
     - ecr-pwd
     - auth-msvc-build
@@ -98,7 +98,7 @@ auth-msvc-stg:
     - docker push stg-mytasks/mytasks-auth
 
 auth-msvc-prod:
-  image: docker:28.2.2-cli
+  image: docker:28.2.2-dind
   needs:
     - ecr-pwd
     - auth-msvc-build
@@ -164,7 +164,7 @@ tasks-msvc-build:
     - dotnet publish -o dist Tasks
 
 tasks-msvc-stg:
-  image: docker:28.2.2-cli
+  image: docker:28.2.2-dind
   needs:
     - ecr-pwd
     - tasks-msvc-build
@@ -180,7 +180,7 @@ tasks-msvc-stg:
     - docker push stg-mytasks/mytasks-tasks
 
 tasks-msvc-prod:
-  image: docker:28.2.2-cli
+  image: docker:28.2.2-dind
   needs:
     - ecr-pwd
     - tasks-msvc-build
