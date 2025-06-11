@@ -35,6 +35,7 @@ shell-build:
 shell-stg:
   image: amazon/aws-cli:2.27.33
   needs:
+    - shell-build
     - isx-stg
   dependencies:
     - shell-build
