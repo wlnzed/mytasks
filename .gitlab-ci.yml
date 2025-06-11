@@ -42,7 +42,4 @@ shell-stg:
   dependencies:
     - shell-build
   script:
-    - aws deploy push
-      --application-name stg-mytasks-shell
-      --source shell/dist
-      --s3-location stg-mytasks-shell/
+    - aws s3 sync shell/dist s3//stg-mytasks-shell/ --delete
