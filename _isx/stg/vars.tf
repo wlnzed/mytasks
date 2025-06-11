@@ -7,6 +7,5 @@ variable "AWS_SECRET_KEY" {
 }
 
 variable "TEST_EMAIL" {
-  default = ""
-  type    = string
+  type = string
 }
