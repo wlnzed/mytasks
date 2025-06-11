@@ -18,6 +18,10 @@ resource "aws_ecs_service" "mytasks_auth" {
   desired_count   = 1
   launch_type     = "EC2"
   task_definition = aws_ecs_task_definition.mytasks_auth.arn
+
+  network_configuration {
+    subnets = [aws_subnet.mytasks_private.id]
+  }
 }
 
 resource "aws_ecs_task_definition" "mytasks_tasks" {
@@ -36,4 +40,8 @@ resource "aws_ecs_service" "mytasks_tasks" {
   desired_count   = 1
   launch_type     = "EC2"
   task_definition = aws_ecs_task_definition.mytasks_tasks.arn
+
+  network_configuration {
+    subnets = [aws_subnet.mytasks_private.id]
+  }
 }
