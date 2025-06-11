@@ -8,3 +8,14 @@ isx-stg:
       -var="AWS_ACCESS_KEY=${AWS_ACCESS_KEY}" -var="AWS_SECRET_KEY=${AWS_SECRET_KEY}"
     - ./terraform apply -auto-approve -var="ENV=stg" -var "TEST_EMAIL=${TEST_EMAIL}"
       -var="AWS_ACCESS_KEY=${AWS_ACCESS_KEY}" -var="AWS_SECRET_KEY=${AWS_SECRET_KEY}"
+
+isx-prod:
+  script:
+    - pushd _isx
+    - wget https://releases.hashicorp.com/terraform/1.12.2/terraform_1.12.2_linux_amd64.zip
+    - unzip terraform_1.12.2_linux_amd64.zip
+    - ./terraform init
+    - ./terraform plan -var="ENV=prod" -var="AWS_ACCESS_KEY=${AWS_ACCESS_KEY}"
+      -var="AWS_SECRET_KEY=${AWS_SECRET_KEY}"
+    - ./terraform apply -auto-approve -var="ENV=prod" -var="AWS_ACCESS_KEY=${AWS_ACCESS_KEY}"
+      -var="AWS_SECRET_KEY=${AWS_SECRET_KEY}"
