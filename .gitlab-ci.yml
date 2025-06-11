@@ -1,3 +1,4 @@
 isx-stg:
   script:
+    - apt install terraform
     - terraform --help
