@@ -1,5 +1,7 @@
 isx-stg:
-  image: hashicorp/terraform:latest
+  image:
+    name: hashicorp/terraform:latest
+    entrypoint: [""]
   script:
     - terraform init
     - terraform plan -var="ENV=stg" -var="TEST_EMAIL=${TEST_EMAIL}"
@@ -8,7 +10,9 @@ isx-stg:
       -var="AWS_ACCESS_KEY=${AWS_ACCESS_KEY}" -var="AWS_SECRET_KEY=${AWS_SECRET_KEY}"
 
 isx-prod:
-  image: hashicorp/terraform:latest
+  image:
+    name: hashicorp/terraform:latest
+    entrypoint: [""]
   script:
     - terraform init
     - terraform plan -var="ENV=prod" -var="AWS_ACCESS_KEY=${AWS_ACCESS_KEY}"
