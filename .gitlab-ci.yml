@@ -1,25 +1,25 @@
-.isx-init:
+isx-stg:
   image:
     name: hashicorp/terraform:1.12
     entrypoint: [""]
-  before_script:
-    - cd _isx
-    - terraform init
-
-isx-stg:
-  extends: .isx-init
   script:
-    - terraform plan -var="ENV=stg" -var="TEST_EMAIL=${TEST_EMAIL}"
+    - cd _isx/stg
+    - terraform init
+    - terraform plan -var="TEST_EMAIL=${TEST_EMAIL}"
       -var="AWS_ACCESS_KEY=${AWS_ACCESS_KEY}" -var="AWS_SECRET_KEY=${AWS_SECRET_KEY}"
     - terraform apply -auto-approve -var="ENV=stg" -var "TEST_EMAIL=${TEST_EMAIL}"
       -var="AWS_ACCESS_KEY=${AWS_ACCESS_KEY}" -var="AWS_SECRET_KEY=${AWS_SECRET_KEY}"
 
 isx-prod:
-  extends: .isx-init
+  image:
+    name: hashicorp/terraform:1.12
+    entrypoint: [""]
   script:
-    - terraform plan -var="ENV=prod" -var="AWS_ACCESS_KEY=${AWS_ACCESS_KEY}"
+    - cd _isx/prod
+    - terraform init
+    - terraform plan -var="AWS_ACCESS_KEY=${AWS_ACCESS_KEY}"
       -var="AWS_SECRET_KEY=${AWS_SECRET_KEY}"
-    - terraform apply -auto-approve -var="ENV=prod" -var="AWS_ACCESS_KEY=${AWS_ACCESS_KEY}"
+    - terraform apply -auto-approve -var="AWS_ACCESS_KEY=${AWS_ACCESS_KEY}"
       -var="AWS_SECRET_KEY=${AWS_SECRET_KEY}"
 
 shell-build:

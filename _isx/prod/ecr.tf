@@ -1,5 +1,5 @@
 resource "aws_ecr_repository" "mytasks" {
-  name                 = "${var.ENV}-mytasks"
+  name                 = "prod-mytasks"
   image_tag_mutability = "MUTABLE"
 
   image_scanning_configuration {

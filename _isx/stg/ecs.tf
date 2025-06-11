@@ -1,19 +1,19 @@
 resource "aws_ecs_cluster" "mytasks" {
-  name = "${var.ENV}-mytasks"
+  name = "stg-mytasks"
 }
 
 resource "aws_ecs_task_definition" "mytasks_auth" {
-  family = "${var.ENV}-mytasks-auth"
+  family = "stg-mytasks-auth"
   container_definitions = templatefile("task_definition.json", {
     app_name = "auth",
-    prefix   = var.ENV
+    prefix   = "stg"
   })
   requires_compatibilities = ["EC2"]
   network_mode             = "awsvpc"
 }
 
 resource "aws_ecs_service" "mytasks_auth" {
-  name            = "${var.ENV}-mytasks-auth"
+  name            = "stg-mytasks-auth"
   cluster         = aws_ecs_cluster.mytasks.id
   desired_count   = 1
   launch_type     = "EC2"
@@ -25,17 +25,17 @@ resource "aws_ecs_service" "mytasks_auth" {
 }
 
 resource "aws_ecs_task_definition" "mytasks_tasks" {
-  family = "${var.ENV}-mytasks-tasks"
+  family = "stg-mytasks-tasks"
   container_definitions = templatefile("task_definition.json", {
     app_name = "tasks",
-    prefix   = var.ENV
+    prefix   = "stg"
   })
   requires_compatibilities = ["EC2"]
   network_mode             = "awsvpc"
 }
 
 resource "aws_ecs_service" "mytasks_tasks" {
-  name            = "${var.ENV}-mytasks-tasks"
+  name            = "stg-mytasks-tasks"
   cluster         = aws_ecs_cluster.mytasks.id
   desired_count   = 1
   launch_type     = "EC2"
