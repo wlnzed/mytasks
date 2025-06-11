@@ -9,10 +9,9 @@ terraform {
   }
 
   backend "s3" {
-    bucket         = "prod-mytasks-tf"
-    dynamodb_table = "prod-mytasks-tf"
-    key            = "prod-mytasks.tfstate"
-    region         = "eu-west-2"
+    bucket = "prod-mytasks-tf"
+    key    = "prod-mytasks.tfstate"
+    region = "eu-west-2"
   }
 }
 
