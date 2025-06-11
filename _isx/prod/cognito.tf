@@ -17,4 +17,8 @@ resource "aws_cognito_user_pool" "mytasks" {
       max_length = 2048
     }
   }
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
