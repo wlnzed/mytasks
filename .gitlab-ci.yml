@@ -21,3 +21,25 @@ isx-prod:
       -var="AWS_SECRET_KEY=${AWS_SECRET_KEY}"
     - terraform apply -auto-approve -var="ENV=prod" -var="AWS_ACCESS_KEY=${AWS_ACCESS_KEY}"
       -var="AWS_SECRET_KEY=${AWS_SECRET_KEY}"
+
+shell-build:
+  image: node:22-alpine
+  artifacts:
+    paths:
+      - shell/dist
+  script:
+    - cd shell
+    - npm ci
+    - npm run build
+
+shell-stg:
+  image: amazon/aws-cli:2.27.33
+  needs:
+    - isx-stg
+  dependencies:
+    - shell-build
+  script:
+    - aws deploy push
+      --application-name stg-mytasks-shell
+      --source shell/dist
+      --s3-location stg-mytasks-shell/
