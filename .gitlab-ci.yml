@@ -1,6 +1,6 @@
 .isx-init:
   image:
-    name: hashicorp/terraform:latest
+    name: hashicorp/terraform:1.12
     entrypoint: [""]
   before_script:
     - cd _isx
