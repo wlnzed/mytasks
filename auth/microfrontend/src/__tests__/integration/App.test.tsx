@@ -156,3 +156,16 @@ test("sign up view displays error when invalid email is submitted", () => {
 
   screen.getByText("Invalid email format.");
 });
+
+test("sign up view displays error when empty password is submitted", () => {
+  Object.defineProperty(window, "location", {
+    value: { origin: "https://localhost:1234", pathname: "/sign-up" },
+  });
+
+  render(<App />);
+
+  const submitButton = screen.getByText("Submit");
+  fireEvent.click(submitButton);
+
+  screen.getByText("Password cannot be empty.");
+});

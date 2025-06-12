@@ -105,3 +105,12 @@ test("displays error when invalid email is submitted", () => {
 
   screen.getByText("Invalid email format.");
 });
+
+test("displays error message when empty password is submitted", () => {
+  render(<SignUp />);
+
+  const submitButton = screen.getByText("Submit");
+  fireEvent.click(submitButton);
+
+  screen.getByText("Password cannot be empty.");
+});

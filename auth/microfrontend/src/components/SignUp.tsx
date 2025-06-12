@@ -8,6 +8,7 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordError, setPasswordError] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
 
   const submit = (e: React.MouseEvent) => {
@@ -15,14 +16,19 @@ const SignUp = () => {
 
     if (validator.isEmpty(email)) {
       setEmailError("Email cannot be empty.");
-      return;
     } else if (!validator.isEmail(email)) {
       setEmailError("Invalid email format.");
     }
 
-    signUpApi.post(email, password, passwordConfirmation).catch((err) => {
-      console.log("error while signing up: " + err);
-    });
+    if (validator.isEmpty(password)) {
+      setPasswordError("Password cannot be empty.");
+    }
+
+    if (emailError === "" && passwordError === "") {
+      signUpApi.post(email, password, passwordConfirmation).catch((err) => {
+        console.log("error while signing up: " + err);
+      });
+    }
   };
 
   return (
@@ -48,13 +54,18 @@ const SignUp = () => {
       <label className={styles.passwordInputLabel} htmlFor="password-input">
         Password:
       </label>
-      <input
-        id="password-input"
-        className={styles.passwordInput}
-        type="text"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
+      <div className={styles.emailInputContainer}>
+        <input
+          id="password-input"
+          className={styles.passwordInput}
+          type="text"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        {passwordError !== "" && (
+          <span className={styles.errorMessage}>{passwordError}</span>
+        )}
+      </div>
 
       <label
         className={styles.passwordConfirmationInputLabel}
