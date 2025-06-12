@@ -76,7 +76,7 @@ auth-msvc-stg:
   image:
     name: amazon/aws-cli:2.27.33
     entrypoint: [""]
-  tags: [docker]
+  tags: [shellexec]
   needs:
     - auth-msvc-build
     - isx-stg
@@ -93,7 +93,7 @@ auth-msvc-prod:
   image:
     name: amazon/aws-cli:2.27.33
     entrypoint: [""]
-  tags: [docker]
+  tags: [shellexec]
   needs:
     - auth-msvc-build
     - e2e
@@ -160,7 +160,7 @@ tasks-msvc-stg:
   image:
     name: amazon/aws-cli:2.27.33
     entrypoint: [""]
-  tags: [docker]
+  tags: [shellexec]
   needs:
     - tasks-msvc-build
     - isx-stg
@@ -177,7 +177,7 @@ tasks-msvc-prod:
   image:
     name: amazon/aws-cli:2.27.33
     entrypoint: [""]
-  tags: [docker]
+  tags: [shellexec]
   needs:
     - tasks-msvc-build
     - e2e
