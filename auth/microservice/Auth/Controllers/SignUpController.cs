@@ -11,4 +11,4 @@ public class SignUpController() : ControllerBase
 }
 
 public record SignUpRequest(
-    string Username, string Password, string PasswordConfirmation);
+    string Email, string Password, string PasswordConfirmation);

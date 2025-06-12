@@ -8,14 +8,14 @@ describe("sign up", () => {
   });
 
   it("signs up the new user on submit", () => {
-    const usernameInput = cy.findByLabelText("Username:");
+    const emailInput = cy.findByLabelText("Email:");
     const passwordInput = cy.findByLabelText("Password:");
     const passwordConfirmationInput = cy.findByLabelText(
       "Password Confirmation:",
     );
     const submitButton = cy.findByText("Submit");
 
-    usernameInput.type("foo");
+    emailInput.type("foo");
     passwordInput.type("bar");
     passwordConfirmationInput.type("baz");
     submitButton.click();

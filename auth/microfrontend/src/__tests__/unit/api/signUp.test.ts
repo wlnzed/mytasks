@@ -2,15 +2,15 @@ import { expect, test, vi } from "vitest";
 import signUpApi from "../../../api/signUp";
 
 test("makes post request with user details to the sign up endpoint", async () => {
-  const username = "someuser";
+  const email = "someuser";
   const password = "p@ssword";
   const passwordConfirmation = "p@asswordConfirmation";
   const expectedBody =
-    `{"username":"${username}","password":"${password}"` +
+    `{"email":"${email}","password":"${password}"` +
     `,"passwordConfirmation":"${passwordConfirmation}"}`;
   global.fetch = vi.fn();
 
-  await signUpApi.post(username, password, passwordConfirmation);
+  await signUpApi.post(email, password, passwordConfirmation);
 
   expect(fetch).toHaveBeenCalledWith(
     import.meta.env.VITE_AUTH_MICROSERVICE_URL + "/sign-up",

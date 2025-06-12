@@ -9,12 +9,12 @@
   margin: 0 1rem 0 0;
 }
 
-.usernameInputLabel {
+.emailInputLabel {
   margin-right: 0.3rem;
   font-weight: 500;
 }
 
-.usernameInput {
+.emailInput {
   margin-right: 1rem;
 }
 

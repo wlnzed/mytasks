@@ -4,14 +4,14 @@ import routes from "../routes.ts";
 import styles from "./SignUp.module.css";
 
 const SignUp = () => {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
 
   const submit = (e: React.MouseEvent) => {
     e.preventDefault();
 
-    signUpApi.post(username, password, passwordConfirmation).catch((err) => {
+    signUpApi.post(email, password, passwordConfirmation).catch((err) => {
       console.log("error while signing up: " + err);
     });
   };
@@ -20,15 +20,15 @@ const SignUp = () => {
     <form className={styles.signUpForm}>
       <h1 className={styles.formTitle}>Sign Up:</h1>
 
-      <label className={styles.usernameInputLabel} htmlFor="username-input">
-        Username:
+      <label className={styles.emailInputLabel} htmlFor="email-input">
+        Email:
       </label>
       <input
-        id="username-input"
-        className={styles.usernameInput}
+        id="email-input"
+        className={styles.emailInput}
         type="text"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
       />
 
       <label className={styles.passwordInputLabel} htmlFor="password-input">

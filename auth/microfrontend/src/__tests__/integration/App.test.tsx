@@ -56,14 +56,14 @@ test("sign up view posts sign up request with form content on submit", () => {
   render(<App />);
 
   screen.getByText("Sign Up:");
-  const usernameInput = screen.getByLabelText("Username:");
+  const emailInput = screen.getByLabelText("Email:");
   const passwordInput = screen.getByLabelText("Password:");
   const passwordConfirmationInput = screen.getByLabelText(
     "Password Confirmation:",
   );
   const submitButton = screen.getByText("Submit");
 
-  fireEvent.change(usernameInput, { target: { value: username } });
+  fireEvent.change(emailInput, { target: { value: email } });
   fireEvent.change(passwordInput, { target: { value: password } });
   fireEvent.change(passwordConfirmationInput, {
     target: { value: passwordConfirmation },
@@ -75,7 +75,7 @@ test("sign up view posts sign up request with form content on submit", () => {
     {
       method: "post",
       body:
-        `{"username":"${username}","password":"${password}"` +
+        `{"email":"${email}","password":"${password}"` +
         `,"passwordConfirmation":"${passwordConfirmation}"}`,
       headers: { "Content-Type": "application/json" },
     },
