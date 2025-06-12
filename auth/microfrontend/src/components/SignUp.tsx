@@ -1,8 +1,8 @@
 import { useState } from "react";
+import validator from "validator";
 import signUpApi from "../api/signUp.ts";
 import routes from "../routes.ts";
 import styles from "./SignUp.module.css";
-import validator from "validator";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
