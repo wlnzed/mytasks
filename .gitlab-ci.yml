@@ -1,3 +1,12 @@
+ecr-pwd:
+  image:
+    name: amazon/aws-cli:2.27.33
+    entrypoint: [""]
+  artifacts:
+    paths:
+      - ecr-pwd.txt
+  script: aws ecr get-login-password --region eu-west-2 >> ecr-pwd.txt
+
 isx-stg:
   image:
     name: hashicorp/terraform:1.12
@@ -73,37 +82,43 @@ auth-msvc-build:
     - dotnet publish -o dist Auth
 
 auth-msvc-stg:
-  image:
-    name: amazon/aws-cli:2.27.33
-    entrypoint: [""]
-  tags: [shellexec]
+  image: docker:28.2.2
+  services:
+    - docker:28.2.2-dind
+  variables:
+    DOCKER_TLS_CERTDIR: /certs
   needs:
+    - ecr-pwd
     - auth-msvc-build
     - isx-stg
   dependencies:
+    - ecr-pwd
     - auth-msvc-build
   script:
     - unset DOCKER_HOST
-    - aws ecr get-login-password --region eu-west-2 | docker login --username
-      AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.eu-west-2.amazonaws.com
+    - cat ecr-pwd.txt | docker login --username AWS --password-stdin
+      ${AWS_ACCOUNT_ID}.dkr.ecr.eu-west-2.amazonaws.com
     - docker build -t stg-mytasks/mytasks-auth Auth
     - docker push stg-mytasks/mytasks-auth
 
 auth-msvc-prod:
-  image:
-    name: amazon/aws-cli:2.27.33
-    entrypoint: [""]
-  tags: [shellexec]
+  image: docker:28.2.2
+  services:
+    - docker:28.2.2-dind
+  variables:
+    DOCKER_TLS_CERTDIR: /certs
   needs:
+    - ecr-pwd
     - auth-msvc-build
     - e2e
     - isx-prod
   dependencies:
+    - ecr-pwd
     - auth-msvc-build
   script:
     - unset DOCKER_HOST
-    - aws ecr get-login-password --region eu-west-2 | docker login --username
-      AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.eu-west-2.amazonaws.com
+    - cat ecr-pwd.txt | docker login --username AWS --password-stdin
+      ${AWS_ACCOUNT_ID}.dkr.ecr.eu-west-2.amazonaws.com
     - docker build -t prod-mytasks/mytasks-auth Auth
     - docker push prod-mytasks/mytasks-auth
 
@@ -157,37 +172,43 @@ tasks-msvc-build:
     - dotnet publish -o dist Tasks
 
 tasks-msvc-stg:
-  image:
-    name: amazon/aws-cli:2.27.33
-    entrypoint: [""]
-  tags: [shellexec]
+  image: docker:28.2.2
+  services:
+    - docker:28.2.2-dind
+  variables:
+    DOCKER_TLS_CERTDIR: /certs
   needs:
+    - ecr-pwd
     - tasks-msvc-build
     - isx-stg
   dependencies:
+    - ecr-pwd
     - tasks-msvc-build
   script:
     - unset DOCKER_HOST
-    - aws ecr get-login-password --region eu-west-2 | docker login --username
-      AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.eu-west-2.amazonaws.com
+    - cat ecr-pwd.txt | docker login --username AWS --password-stdin
+      ${AWS_ACCOUNT_ID}.dkr.ecr.eu-west-2.amazonaws.com
     - docker build -t stg-mytasks/mytasks-tasks Tasks
     - docker push stg-mytasks/mytasks-tasks
 
 tasks-msvc-prod:
-  image:
-    name: amazon/aws-cli:2.27.33
-    entrypoint: [""]
-  tags: [shellexec]
+  image: docker:28.2.2
+  services:
+    - docker:28.2.2-dind
+  variables:
+    DOCKER_TLS_CERTDIR: /certs
   needs:
+    - ecr-pwd
     - tasks-msvc-build
     - e2e
     - isx-prod
   dependencies:
+    - ecr-pwd
     - tasks-msvc-build
   script:
     - unset DOCKER_HOST
-    - aws ecr get-login-password --region eu-west-2 | docker login --username
-      AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.eu-west-2.amazonaws.com
+    - cat ecr-pwd.txt | docker login --username AWS --password-stdin
+      ${AWS_ACCOUNT_ID}.dkr.ecr.eu-west-2.amazonaws.com
     - docker build -t prod-mytasks/mytasks-tasks Tasks
     - docker push prod-mytasks/mytasks-tasks
 
