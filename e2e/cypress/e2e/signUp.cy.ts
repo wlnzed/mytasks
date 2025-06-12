@@ -15,6 +15,22 @@ describe("sign up", () => {
     cy.findByText("Email cannot be empty.");
   });
 
+  it("displays error message when invalid email is submitted", () => {
+    const emailInput = cy.findByLabelText("Email:");
+    const passwordInput = cy.findByLabelText("Password:");
+    const passwordConfirmationInput = cy.findByLabelText(
+      "Password Confirmation:",
+    );
+    const submitButton = cy.findByText("Submit");
+
+    emailInput.type("foo");
+    passwordInput.type("Qw3rtyu!");
+    passwordConfirmationInput.type("Qw3rtyu!");
+    submitButton.click();
+
+    cy.findByText("Invalid email format.");
+  });
+
   it("signs up the new user on submit", () => {
     const emailInput = cy.findByLabelText("Email:");
     const passwordInput = cy.findByLabelText("Password:");

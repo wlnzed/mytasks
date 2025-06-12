@@ -76,11 +76,32 @@ test("navigates to sign in path on sign in button click", async () => {
   await waitFor(() => expect(window.location.pathname).toBe("/sign-in"));
 });
 
-test("displays error message when empty email is submitted", async () => {
+test("displays error message when empty email is submitted", () => {
   render(<SignUp />);
 
   const submitButton = screen.getByText("Submit");
   fireEvent.click(submitButton);
 
   screen.getByText("Email cannot be empty.");
+});
+
+test("displays error when invalid email is submitted", () => {
+  render(<SignUp />);
+
+  const emailInput = screen.getByLabelText("Email:");
+  const passwordInput = screen.getByLabelText("Password:");
+  const passwordConfirmationInput = screen.getByLabelText(
+    "Password Confirmation:",
+  );
+
+  fireEvent.change(emailInput, { target: { value: "foo" } });
+  fireEvent.change(passwordInput, { target: { value: "Qw3rtyu!" } });
+  fireEvent.change(passwordConfirmationInput, {
+    target: { value: "Qw3rtyu!" },
+  });
+
+  const submitButton = screen.getByText("Submit");
+  fireEvent.click(submitButton);
+
+  screen.getByText("Invalid email format.");
 });

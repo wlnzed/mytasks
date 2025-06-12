@@ -16,6 +16,8 @@ const SignUp = () => {
     if (validator.isEmpty(email)) {
       setEmailError("Email cannot be empty.");
       return;
+    } else if (!validator.isEmail(email)) {
+      setEmailError("Invalid email format.");
     }
 
     signUpApi.post(email, password, passwordConfirmation).catch((err) => {

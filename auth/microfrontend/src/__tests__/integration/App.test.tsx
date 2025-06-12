@@ -129,5 +129,30 @@ test("sign up view displays error when empty email is submitted", () => {
   const submitButton = screen.getByText("Submit");
   fireEvent.click(submitButton);
 
-  screen.findByText("Email cannot be empty.");
+  screen.getByText("Email cannot be empty.");
+});
+
+test("sign up view displays error when invalid email is submitted", () => {
+  Object.defineProperty(window, "location", {
+    value: { origin: "https://localhost:1234", pathname: "/sign-up" },
+  });
+
+  render(<App />);
+
+  const emailInput = screen.getByLabelText("Email:");
+  const passwordInput = screen.getByLabelText("Password:");
+  const passwordConfirmationInput = screen.getByLabelText(
+    "Password Confirmation:",
+  );
+
+  fireEvent.change(emailInput, { target: { value: "foo" } });
+  fireEvent.change(passwordInput, { target: { value: "Qw3rtyu!" } });
+  fireEvent.change(passwordConfirmationInput, {
+    target: { value: "Qw3rtyu!" },
+  });
+
+  const submitButton = screen.getByText("Submit");
+  fireEvent.click(submitButton);
+
+  screen.getByText("Invalid email format.");
 });
