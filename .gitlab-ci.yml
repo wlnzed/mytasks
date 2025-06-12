@@ -87,6 +87,7 @@ auth-msvc-stg:
     - docker:28.2.2-dind
   variables:
     DOCKER_TLS_CERTDIR: /certs
+    DOCKER_HOST: tcp://docker:2375
   needs:
     - ecr-pwd
     - auth-msvc-build
@@ -107,6 +108,7 @@ auth-msvc-prod:
     - docker:28.2.2-dind
   variables:
     DOCKER_TLS_CERTDIR: /certs
+    DOCKER_HOST: tcp://docker:2375
   needs:
     - ecr-pwd
     - auth-msvc-build
@@ -177,6 +179,7 @@ tasks-msvc-stg:
     - docker:28.2.2-dind
   variables:
     DOCKER_TLS_CERTDIR: /certs
+    DOCKER_HOST: tcp://docker:2375
   needs:
     - ecr-pwd
     - tasks-msvc-build
@@ -197,6 +200,7 @@ tasks-msvc-prod:
     - docker:28.2.2-dind
   variables:
     DOCKER_TLS_CERTDIR: /certs
+    DOCKER_HOST: tcp://docker:2375
   needs:
     - ecr-pwd
     - tasks-msvc-build
