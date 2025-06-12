@@ -2,14 +2,21 @@ import { useState } from "react";
 import signUpApi from "../api/signUp.ts";
 import routes from "../routes.ts";
 import styles from "./SignUp.module.css";
+import validator from "validator";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
 
   const submit = (e: React.MouseEvent) => {
     e.preventDefault();
+
+    if (validator.isEmpty(email)) {
+      setEmailError("Email cannot be empty.");
+      return;
+    }
 
     signUpApi.post(email, password, passwordConfirmation).catch((err) => {
       console.log("error while signing up: " + err);
@@ -30,6 +37,9 @@ const SignUp = () => {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
+      {emailError !== "" && (
+        <div className={styles.ErrorMessage}>{emailError}</div>
+      )}
 
       <label className={styles.passwordInputLabel} htmlFor="password-input">
         Password:

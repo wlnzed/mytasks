@@ -7,6 +7,14 @@ describe("sign up", () => {
     cy.findByText("TODO: SIGN IN VIEW");
   });
 
+  it("displays error message when empty email is submitted", () => {
+    const submitButton = cy.findByText("Submit");
+
+    submitButton.click();
+
+    cy.findByText("Email cannot be empty.");
+  });
+
   it("signs up the new user on submit", () => {
     const emailInput = cy.findByLabelText("Email:");
     const passwordInput = cy.findByLabelText("Password:");

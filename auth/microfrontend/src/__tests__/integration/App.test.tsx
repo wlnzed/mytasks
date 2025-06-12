@@ -49,7 +49,7 @@ test("sign up view posts sign up request with form content on submit", () => {
   spyFetch.mockResolvedValue(Promise.resolve());
   global.fetch = spyFetch;
 
-  const username = "foo";
+  const email = "foo";
   const password = "bar";
   const passwordConfirmation = "baz";
 
@@ -93,6 +93,8 @@ test("sign up view logs error message on post error", async () => {
   global.fetch = spyFetch;
 
   render(<App />);
+  const emailInput = screen.getByLabelText("Email:");
+  fireEvent.change(emailInput, { target: { value: "foo@bar.baz" } });
 
   const submitButton = screen.getByText("Submit");
   fireEvent.click(submitButton);
@@ -115,4 +117,17 @@ test("sign up view navigates to sign in path on sign in button click", async () 
   fireEvent.click(signInButton);
 
   await waitFor(() => expect(window.location.pathname).toBe("/sign-in"));
+});
+
+test("sign up view displays error when empty email is submitted", () => {
+  Object.defineProperty(window, "location", {
+    value: { origin: "https://localhost:1234", pathname: "/sign-up" },
+  });
+
+  render(<App />);
+
+  const submitButton = screen.getByText("Submit");
+  fireEvent.click(submitButton);
+
+  screen.findByText("Email cannot be empty.");
 });

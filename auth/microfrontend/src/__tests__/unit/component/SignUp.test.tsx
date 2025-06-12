@@ -52,6 +52,8 @@ test("logs error message on post error", async () => {
   signUpApi.post = spyPost;
 
   render(<SignUp />);
+  const emailInput = screen.getByLabelText("Email:");
+  fireEvent.change(emailInput, { target: { value: "foo@bar.baz" } });
 
   const submitButton = screen.getByText("Submit");
   fireEvent.click(submitButton);
@@ -72,4 +74,13 @@ test("navigates to sign in path on sign in button click", async () => {
   fireEvent.click(signInButton);
 
   await waitFor(() => expect(window.location.pathname).toBe("/sign-in"));
+});
+
+test("displays error message when empty email is submitted", async () => {
+  render(<SignUp />);
+
+  const submitButton = screen.getByText("Submit");
+  fireEvent.click(submitButton);
+
+  screen.getByText("Email cannot be empty.");
 });
