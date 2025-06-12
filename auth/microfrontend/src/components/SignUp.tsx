@@ -30,16 +30,18 @@ const SignUp = () => {
       <label className={styles.emailInputLabel} htmlFor="email-input">
         Email:
       </label>
-      <input
-        id="email-input"
-        className={styles.emailInput}
-        type="text"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      {emailError !== "" && (
-        <div className={styles.ErrorMessage}>{emailError}</div>
-      )}
+      <div className={styles.emailInputContainer}>
+        <input
+          id="email-input"
+          className={styles.emailInput}
+          type="text"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        {emailError !== "" && (
+          <span className={styles.errorMessage}>{emailError}</span>
+        )}
+      </div>
 
       <label className={styles.passwordInputLabel} htmlFor="password-input">
         Password:
