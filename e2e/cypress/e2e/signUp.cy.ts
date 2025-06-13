@@ -71,6 +71,22 @@ describe("sign up", () => {
     cy.findByText("Password must contain a lowercase letter.");
   });
 
+  it("displays error message when password doesn't contain an uppercase letter", () => {
+    const emailInput = cy.findByLabelText("Email:");
+    const passwordInput = cy.findByLabelText("Password:");
+    const passwordConfirmationInput = cy.findByLabelText(
+      "Password Confirmation:",
+    );
+    const submitButton = cy.findByText("Submit");
+
+    emailInput.type("foo@bar.baz");
+    passwordInput.type("qw3rtyu!");
+    passwordConfirmationInput.type("Qw3rtyu!");
+    submitButton.click();
+
+    cy.findByText("Password must contain an uppercase letter.");
+  });
+
   it("signs up the new user on submit", () => {
     const emailInput = cy.findByLabelText("Email:");
     const passwordInput = cy.findByLabelText("Password:");

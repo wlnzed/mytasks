@@ -26,6 +26,8 @@ const SignUp = () => {
       setPasswordError("Password must be at least 8 characters long.");
     } else if (validator.isUppercase(password)) {
       setPasswordError("Password must contain a lowercase letter.");
+    } else if (validator.isLowercase(password)) {
+      setPasswordError("Password must contain an uppercase letter.");
     }
 
     if (emailError === "" && passwordError === "") {

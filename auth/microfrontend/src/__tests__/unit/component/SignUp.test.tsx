@@ -156,3 +156,24 @@ test("displays error message when password doesn't contain a lowercase letter", 
 
   screen.getByText("Password must contain a lowercase letter.");
 });
+
+test("displays error message when password doesn't contain an uppercase letter", () => {
+  render(<SignUp />);
+
+  const emailInput = screen.getByLabelText("Email:");
+  const passwordInput = screen.getByLabelText("Password:");
+  const passwordConfirmationInput = screen.getByLabelText(
+    "Password Confirmation:",
+  );
+
+  fireEvent.change(emailInput, { target: { value: "foo@bar.baz" } });
+  fireEvent.change(passwordInput, { target: { value: "qw3rtyu!" } });
+  fireEvent.change(passwordConfirmationInput, {
+    target: { value: "Qw3rtyu!" },
+  });
+
+  const submitButton = screen.getByText("Submit");
+  fireEvent.click(submitButton);
+
+  screen.getByText("Password must contain an uppercase letter.");
+});
