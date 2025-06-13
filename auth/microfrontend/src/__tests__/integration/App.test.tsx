@@ -169,3 +169,28 @@ test("sign up view displays error when empty password is submitted", () => {
 
   screen.getByText("Password cannot be empty.");
 });
+
+test("sign up view displays error when a shorter than 8 characters password is submitted", () => {
+  Object.defineProperty(window, "location", {
+    value: { origin: "https://localhost:1234", pathname: "/sign-up" },
+  });
+
+  render(<App />);
+
+  const emailInput = screen.getByLabelText("Email:");
+  const passwordInput = screen.getByLabelText("Password:");
+  const passwordConfirmationInput = screen.getByLabelText(
+    "Password Confirmation:",
+  );
+
+  fireEvent.change(emailInput, { target: { value: "foo" } });
+  fireEvent.change(passwordInput, { target: { value: "Qw3rty!" } });
+  fireEvent.change(passwordConfirmationInput, {
+    target: { value: "Qw3rtyu!" },
+  });
+
+  const submitButton = screen.getByText("Submit");
+  fireEvent.click(submitButton);
+
+  screen.getByText("Password must be at least 8 characters long.");
+});

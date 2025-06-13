@@ -39,6 +39,22 @@ describe("sign up", () => {
     cy.findByText("Password cannot be empty.");
   });
 
+  it("displays error message when password is shorter than 8 characters", () => {
+    const emailInput = cy.findByLabelText("Email:");
+    const passwordInput = cy.findByLabelText("Password:");
+    const passwordConfirmationInput = cy.findByLabelText(
+      "Password Confirmation:",
+    );
+    const submitButton = cy.findByText("Submit");
+
+    emailInput.type("foo@bar.baz");
+    passwordInput.type("Qw3rty!");
+    passwordConfirmationInput.type("Qw3rtyu!");
+    submitButton.click();
+
+    cy.findByText("Password must be at least 8 characters long.");
+  });
+
   it("signs up the new user on submit", () => {
     const emailInput = cy.findByLabelText("Email:");
     const passwordInput = cy.findByLabelText("Password:");
