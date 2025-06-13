@@ -8,7 +8,7 @@ permissions:
   contents: read
 defaults:
   run:
-    working-directory: ./shell
+    working-directory: shell
 jobs:
   build:
     name: Build
