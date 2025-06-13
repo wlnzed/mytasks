@@ -7,10 +7,6 @@ on:
   workflow_dispatch:
 permissions:
   contents: read
-env:
-  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
 jobs:
   stg:
     name: Provision Staging Infrastructure
@@ -30,10 +26,15 @@ jobs:
 
       - name: Plan Infrastructure
         run: terraform plan -input=false
+          -var "AWS_ACCESS_KEY=${{secrets.AWS_ACCESS_KEY_ID}}"
+          -var "AWS_SECRET_KEY=${{secrets.AWS_SECRET_ACCESS_KEY}}"
+          -var "TEST_EMAIL=${{ secrets.TEST_EMAIL }}"
 
       - name: Provision Infrastructure
-        run: terraform apply -auto-approve -input=false \
-          -var="ENV=stg" -var "TEST_EMAIL=${{ secrets.TEST_EMAIL }}"
+        run: terraform apply -auto-approve -input=false
+          -var "AWS_ACCESS_KEY=${{secrets.AWS_ACCESS_KEY_ID}}"
+          -var "AWS_SECRET_KEY=${{secrets.AWS_SECRET_ACCESS_KEY}}"
+          -var "TEST_EMAIL=${{ secrets.TEST_EMAIL }}"
 
   prod:
     name: Provision Production Infrastructure
@@ -53,6 +54,10 @@ jobs:
 
       - name: Plan Infrastructure
         run: terraform plan -input=false
+          -var "AWS_ACCESS_KEY=${{secrets.AWS_ACCESS_KEY_ID}}"
+          -var "AWS_SECRET_KEY=${{secrets.AWS_SECRET_ACCESS_KEY}}"
 
       - name: Provision Infrastructure
-        run: terraform apply -auto-approve -input=false -var="ENV=prod"
+        run: terraform apply -auto-approve -input=false
+          -var "AWS_ACCESS_KEY=${{secrets.AWS_ACCESS_KEY_ID}}"
+          -var "AWS_SECRET_KEY=${{secrets.AWS_SECRET_ACCESS_KEY}}"
