@@ -8,7 +8,7 @@ permissions:
   contents: read
 defaults:
   run:
-    working-directory: auth/microfrontend
+    working-directory: ./auth/microfrontend
 jobs:
   build:
     name: Build

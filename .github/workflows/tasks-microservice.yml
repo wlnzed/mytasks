@@ -8,7 +8,7 @@ permissions:
   contents: read
 defaults:
   run:
-    working-directory: tasks/microservice
+    working-directory: ./tasks/microservice
 jobs:
   build:
     name: Install Solution Dependencies

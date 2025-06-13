@@ -8,7 +8,7 @@ permissions:
   contents: read
 defaults:
   run:
-    working-directory: e2e
+    working-directory: ./e2e
 jobs:
   run:
     name: Run
