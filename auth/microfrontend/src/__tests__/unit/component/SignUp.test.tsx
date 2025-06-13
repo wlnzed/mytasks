@@ -135,3 +135,24 @@ test("displays error when a shorter than 8 characters password is submitted", ()
 
   screen.getByText("Password must be at least 8 characters long.");
 });
+
+test("displays error message when password doesn't contain a lowercase letter", () => {
+  render(<SignUp />);
+
+  const emailInput = screen.getByLabelText("Email:");
+  const passwordInput = screen.getByLabelText("Password:");
+  const passwordConfirmationInput = screen.getByLabelText(
+    "Password Confirmation:",
+  );
+
+  fireEvent.change(emailInput, { target: { value: "foo@bar.baz" } });
+  fireEvent.change(passwordInput, { target: { value: "QW3RTYU!" } });
+  fireEvent.change(passwordConfirmationInput, {
+    target: { value: "Qw3rtyu!" },
+  });
+
+  const submitButton = screen.getByText("Submit");
+  fireEvent.click(submitButton);
+
+  screen.getByText("Password must contain a lowercase letter.");
+});

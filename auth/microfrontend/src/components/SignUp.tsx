@@ -24,6 +24,8 @@ const SignUp = () => {
       setPasswordError("Password cannot be empty.");
     } else if (!validator.isLength(password, { min: 8 })) {
       setPasswordError("Password must be at least 8 characters long.");
+    } else if (validator.isUppercase(password)) {
+      setPasswordError("Password must contain a lowercase letter.");
     }
 
     if (emailError === "" && passwordError === "") {
