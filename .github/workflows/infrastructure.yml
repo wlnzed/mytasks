@@ -13,7 +13,7 @@ env:
   AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
 defaults:
   run:
-    working-directory: _isx
+    working-directory: ./_isx
 jobs:
   stg:
     name: Provision Staging Infrastructure
