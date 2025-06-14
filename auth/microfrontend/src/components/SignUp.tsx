@@ -30,6 +30,8 @@ const SignUp = () => {
       setPasswordError("Password must contain an uppercase letter.");
     } else if (!/\d/.test(password)) {
       setPasswordError("Password must contain a number.");
+    } else if (validator.isAlphanumeric(password)) {
+      setPasswordError("Password must contain a symbol.");
     }
 
     if (emailError === "" && passwordError === "") {

@@ -198,3 +198,24 @@ test("displays error message when password doesn't contain a number", () => {
 
   screen.getByText("Password must contain a number.");
 });
+
+test("displays error message when password doesn't contain a symbol", () => {
+  render(<SignUp />);
+
+  const emailInput = screen.getByLabelText("Email:");
+  const passwordInput = screen.getByLabelText("Password:");
+  const passwordConfirmationInput = screen.getByLabelText(
+    "Password Confirmation:",
+  );
+
+  fireEvent.change(emailInput, { target: { value: "foo@bar.baz" } });
+  fireEvent.change(passwordInput, { target: { value: "Qw3rtyui" } });
+  fireEvent.change(passwordConfirmationInput, {
+    target: { value: "Qw3rtyu!" },
+  });
+
+  const submitButton = screen.getByText("Submit");
+  fireEvent.click(submitButton);
+
+  screen.getByText("Password must contain a symbol.");
+});

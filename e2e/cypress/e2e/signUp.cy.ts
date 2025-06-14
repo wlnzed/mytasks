@@ -103,6 +103,22 @@ describe("sign up", () => {
     cy.findByText("Password must contain a number.");
   });
 
+  it("displays error message when password doesn't contain a symbol", () => {
+    const emailInput = cy.findByLabelText("Email:");
+    const passwordInput = cy.findByLabelText("Password:");
+    const passwordConfirmationInput = cy.findByLabelText(
+      "Password Confirmation:",
+    );
+    const submitButton = cy.findByText("Submit");
+
+    emailInput.type("foo@bar.baz");
+    passwordInput.type("Qw3rtyui");
+    passwordConfirmationInput.type("Qw3rtyu!");
+    submitButton.click();
+
+    cy.findByText("Password must contain a symbol.");
+  });
+
   it("signs up the new user on submit", () => {
     const emailInput = cy.findByLabelText("Email:");
     const passwordInput = cy.findByLabelText("Password:");

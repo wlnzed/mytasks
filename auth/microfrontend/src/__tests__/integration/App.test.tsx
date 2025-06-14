@@ -269,3 +269,28 @@ test("sign up view displays error message when password doesn't contain a number
 
   screen.getByText("Password must contain a number.");
 });
+
+test("sign up view displays error message when password doesn't contain a symbol", () => {
+  Object.defineProperty(window, "location", {
+    value: { origin: "https://localhost:1234", pathname: "/sign-up" },
+  });
+
+  render(<App />);
+
+  const emailInput = screen.getByLabelText("Email:");
+  const passwordInput = screen.getByLabelText("Password:");
+  const passwordConfirmationInput = screen.getByLabelText(
+    "Password Confirmation:",
+  );
+
+  fireEvent.change(emailInput, { target: { value: "foo" } });
+  fireEvent.change(passwordInput, { target: { value: "Qw3rtyui" } });
+  fireEvent.change(passwordConfirmationInput, {
+    target: { value: "Qw3rtyu!" },
+  });
+
+  const submitButton = screen.getByText("Submit");
+  fireEvent.click(submitButton);
+
+  screen.getByText("Password must contain a symbol.");
+});
