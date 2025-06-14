@@ -50,7 +50,7 @@ jobs:
         uses: beacon-biosignals/get-workflow-run@v1
         id: infrastructure-workflow-run
         with:
-          workflow-file: infrastructure.yml
+          workflow-file: ../../.github/workflows/infrastructure.yml
           # TODO: check if below works - pasted from example: commit-sha: ${{ github.event.pull_request.head.sha }}
           commit-sha: ${{ github.event.push.head.sha }}
 
@@ -76,9 +76,6 @@ jobs:
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-    defaults:
-      run:
-        working-directory: auth/microfrontend
     steps:
       - name: Check Out Repository
         uses: actions/checkout@v4
@@ -102,7 +99,7 @@ jobs:
         uses: beacon-biosignals/get-workflow-run@v1
         id: infrastructure-workflow-run
         with:
-          workflow-file: infrastructure.yml
+          workflow-file: ../../.github/workflows/infrastructure.yml
           # TODO: check if below works - pasted from example: commit-sha: ${{ github.event.pull_request.head.sha }}
           commit-sha: ${{ github.event.push.head.sha }}
 
