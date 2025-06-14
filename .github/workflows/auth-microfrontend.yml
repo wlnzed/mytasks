@@ -52,7 +52,7 @@ jobs:
         uses: beacon-biosignals/get-workflow-run@v1
         id: infrastructure-workflow-run
         with:
-          workflow-file: ../../.github/workflows/infrastructure.yml
+          workflow-file: infrastructure.yml
           # TODO: check if below works - pasted from example: commit-sha: ${{ github.event.pull_request.head.sha }}
           commit-sha: ${{ github.event.push.head.sha }}
 
@@ -103,7 +103,7 @@ jobs:
         uses: beacon-biosignals/get-workflow-run@v1
         id: infrastructure-workflow-run
         with:
-          workflow-file: ../../.github/workflows/infrastructure.yml
+          workflow-file: infrastructure.yml
           # TODO: check if below works - pasted from example: commit-sha: ${{ github.event.pull_request.head.sha }}
           commit-sha: ${{ github.event.push.head.sha }}
 
