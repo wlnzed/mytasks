@@ -1,11 +1,10 @@
 name: Build and Deploy Auth Microfrontend
 run-name: Build and Deploy Auth Microfrontend
 on:
-  push:
+  workflow_run:
+    workflows: [Provision Infrastructure]
     branches: [main]
-    paths:
-      - .github/workflows/auth-microfrontend.yml
-      - auth/microfrontend/**
+    types: [completed]
 permissions:
   contents: read
 defaults:
