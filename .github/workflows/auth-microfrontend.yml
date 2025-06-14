@@ -8,13 +8,13 @@ on:
       - auth/microfrontend/**
 permissions:
   contents: read
+defaults:
+  run:
+    working-directory: auth/microfrontend
 jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: auth/microfrontend
     steps:
       - name: Check Out Repository
         uses: actions/checkout@v4
