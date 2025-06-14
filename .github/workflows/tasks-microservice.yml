@@ -3,7 +3,9 @@ run-name: Build and Deploy Tasks Microservice
 on:
   push:
     branches: [main]
-    paths: [tasks/microservice/**]
+    paths:
+      - .github/workflows/tasks-microservice.yml
+      - tasks/microservice/**
 permissions:
   contents: read
 defaults:

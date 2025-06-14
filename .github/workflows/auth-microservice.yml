@@ -3,7 +3,9 @@ run-name: Build and Deploy Auth Microservice
 on:
   push:
     branches: [main]
-    paths: [auth/microservice/**]
+    paths:
+      - .github/workflows/auth-microservice.yml
+      - auth/microservice/**
 permissions:
   contents: read
 defaults:

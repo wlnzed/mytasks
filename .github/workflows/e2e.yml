@@ -3,7 +3,12 @@ run-name: Run End-to-End Tests
 on:
   push:
     branches: [main]
-    paths: [shell/**, auth/**, tasks/**, e2e/**]
+    paths:
+      - .github/workflows/e2e.yml
+      - shell/**
+      - auth/**,
+      - tasks/**
+      - e2e/**
 permissions:
   contents: read
 defaults:

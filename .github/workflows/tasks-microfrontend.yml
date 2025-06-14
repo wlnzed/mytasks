@@ -3,7 +3,9 @@ run-name: Build and Deploy Tasks Microfrontend
 on:
   push:
     branches: [main]
-    paths: [tasks/microfrontend/**]
+    paths:
+      - .github/workflows/tasks-microfrontend.yml
+      - tasks/microfrontend/**
 permissions:
   contents: read
 defaults:

@@ -3,7 +3,9 @@ run-name: Build and Deploy Frontend Shell
 on:
   push:
     branches: [main]
-    paths: [shell/**]
+    paths:
+      - .github/workflows/shell.yml
+      - shell/**
 permissions:
   contents: read
 defaults:

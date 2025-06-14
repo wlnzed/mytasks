@@ -3,7 +3,9 @@ run-name: Build and Deploy Auth Microfrontend
 on:
   push:
     branches: [main]
-    paths: [auth/microfrontend/**]
+    paths:
+      - .github/workflows/auth-microfrontend.yml
+      - auth/microfrontend/**
 permissions:
   contents: read
 jobs:

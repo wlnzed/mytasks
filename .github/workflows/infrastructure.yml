@@ -3,7 +3,9 @@ run-name: Provision Infrastructure
 on:
   push:
     branches: [main]
-    paths: [_isx/**]
+    paths:
+      - .github/workflows/infrastructure.yml
+      - _isx/**
   workflow_dispatch:
 permissions:
   contents: read
