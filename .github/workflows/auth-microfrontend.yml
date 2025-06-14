@@ -39,6 +39,8 @@ jobs:
     name: Deploy to Staging Environment
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      actions: read
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -73,6 +75,8 @@ jobs:
     name: Deploy to Production Environment
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      actions: read
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
