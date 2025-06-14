@@ -12,12 +12,15 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: auth/microfrontend
     steps:
       - name: Check Out Repository
         uses: actions/checkout@v4
+
+      - name: Move into Tasks Microfrontend Directory
+        run: cd auth/microfrontend
+
+      - name: Display Current Directory File Names
+        run: ls
 
       - name: Set Up Node.js Environment
         uses: actions/setup-node@v4
@@ -41,12 +44,15 @@ jobs:
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-    defaults:
-      run:
-        working-directory: auth/microfrontend
     steps:
       - name: Check Out Repository
         uses: actions/checkout@v4
+
+      - name: Move into Tasks Microfrontend Directory
+        run: cd auth/microfrontend
+
+      - name: Display Current Directory File Names
+        run: ls
 
       - name: Get Infrastructure Workflow Run Reference
         uses: beacon-biosignals/get-workflow-run@v1
@@ -84,6 +90,12 @@ jobs:
     steps:
       - name: Check Out Repository
         uses: actions/checkout@v4
+
+      - name: Move into Tasks Microfrontend Directory
+        run: cd auth/microfrontend
+
+      - name: Display Current Directory File Names
+        run: ls
 
       - name: Get End-to-End Tests Workflow Run Reference
         uses: beacon-biosignals/get-workflow-run@v1
