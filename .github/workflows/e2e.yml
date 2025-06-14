@@ -27,8 +27,7 @@ jobs:
         id: shell-workflow-run
         with:
           workflow-file: shell.yml
-          # TODO: check if below works - pasted from example: commit-sha: ${{ github.event.pull_request.head.sha }}
-          commit-sha: ${{ github.event.push.head.sha }}
+          commit-sha: ${{ github.event.pull_request.head.sha || github.sha }}
 
       - name: Wait for Frontend Shell Deployment to Staging Environment
         uses: beacon-biosignals/wait-for-job@v1
@@ -42,8 +41,7 @@ jobs:
         id: auth-microservice-workflow-run
         with:
           workflow-file: auth-microservice.yml
-          # TODO: check if below works - pasted from example: commit-sha: ${{ github.event.pull_request.head.sha }}
-          commit-sha: ${{ github.event.push.head.sha }}
+          commit-sha: ${{ github.event.pull_request.head.sha || github.sha }}
 
       - name: Wait for Auth Microservice Deployment to Staging Environment
         uses: beacon-biosignals/wait-for-job@v1
@@ -57,8 +55,7 @@ jobs:
         id: auth-microfrontend-workflow-run
         with:
           workflow-file: auth-microfrontend.yml
-          # TODO: check if below works - pasted from example: commit-sha: ${{ github.event.pull_request.head.sha }}
-          commit-sha: ${{ github.event.push.head.sha }}
+          commit-sha: ${{ github.event.pull_request.head.sha || github.sha }}
 
       - name: Wait for Auth Microfrontend Deployment to Staging Environment
         uses: beacon-biosignals/wait-for-job@v1
@@ -72,8 +69,7 @@ jobs:
         id: tasks-microservice-workflow-run
         with:
           workflow-file: tasks-microservice.yml
-          # TODO: check if below works - pasted from example: commit-sha: ${{ github.event.pull_request.head.sha }}
-          commit-sha: ${{ github.event.push.head.sha }}
+          commit-sha: ${{ github.event.pull_request.head.sha || github.sha }}
 
       - name: Wait for Tasks Microservice Deployment to Staging Environment
         uses: beacon-biosignals/wait-for-job@v1
@@ -87,8 +83,7 @@ jobs:
         id: tasks-microfrontend-workflow-run
         with:
           workflow-file: tasks-microfrontend.yml
-          # TODO: check if below works - pasted from example: commit-sha: ${{ github.event.pull_request.head.sha }}
-          commit-sha: ${{ github.event.push.head.sha }}
+          commit-sha: ${{ github.event.pull_request.head.sha || github.sha }}
 
       - name: Wait for Tasks Microfrontend Deployment to Staging Environment
         uses: beacon-biosignals/wait-for-job@v1

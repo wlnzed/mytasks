@@ -47,8 +47,7 @@ jobs:
         id: infrastructure-workflow-run
         with:
           workflow-file: infrastructure.yml
-          # TODO: check if below works - pasted from example: commit-sha: ${{ github.event.pull_request.head.sha }}
-          commit-sha: ${{ github.event.push.head.sha }}
+          commit-sha: ${{ github.event.pull_request.head.sha || github.sha }}
 
       - name: Wait for Staging Infrastructure Provisioning
         uses: beacon-biosignals/wait-for-job@v1
@@ -85,8 +84,7 @@ jobs:
         id: e2e-workflow-run
         with:
           workflow-file: e2e.yml
-          # TODO: check if below works - pasted from example: commit-sha: ${{ github.event.pull_request.head.sha }}
-          commit-sha: ${{ github.event.push.head.sha }}
+          commit-sha: ${{ github.event.pull_request.head.sha || github.sha }}
 
       - name: Wait for End-to-End Tests to Run
         uses: beacon-biosignals/wait-for-job@v1
@@ -100,8 +98,7 @@ jobs:
         id: infrastructure-workflow-run
         with:
           workflow-file: infrastructure.yml
-          # TODO: check if below works - pasted from example: commit-sha: ${{ github.event.pull_request.head.sha }}
-          commit-sha: ${{ github.event.push.head.sha }}
+          commit-sha: ${{ github.event.pull_request.head.sha || github.sha }}
 
       - name: Wait for Production Infrastructure Provisioning
         uses: beacon-biosignals/wait-for-job@v1
