@@ -6,7 +6,6 @@ on:
     paths:
       - .github/workflows/infrastructure.yml
       - _isx/**
-  workflow_dispatch:
 permissions:
   contents: read
 defaults:
